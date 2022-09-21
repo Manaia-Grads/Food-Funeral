@@ -1,4 +1,3 @@
-
 const knex = require('knex')
 const config = require('../knexfile').test
 const testDb = knex(config)
@@ -17,11 +16,10 @@ afterAll(() => {
 })
 
 describe('getAllPosts function', () => {
-  it('returns all posts as an array of obj',()=>{
-    return db.getAllPosts(testDb).then((array)=>{
+  it('returns all posts as an array of obj', () => {
+    return db.getAllPosts(testDb).then((array) => {
       expect(array).toHaveLength(3)
       expect(array[0].title).toBe('I ate a cow')
     })
   })
 })
-
