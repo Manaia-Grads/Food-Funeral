@@ -20,7 +20,8 @@
     "tailwind": "tailwindcss -w -i ./client/tailwind.css -o ./server/public/styles.css",
     "webpack": "webpack --config ./client/webpack.config.js",
     "webpack:watch": "npm run webpack -- --watch",
-    "knex": "knex --knexfile ./server/db/knexfile.js"
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "prettier": "prettier --write server client"
   },
   "babel": {
     "presets": [
