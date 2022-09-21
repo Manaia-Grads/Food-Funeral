@@ -2,6 +2,7 @@ const request = require('supertest')
 const server = require('../server')
 
 const {getAllPosts} = require('../db/index.js')
+
 jest.mock('../db/index.js')
 
 jest.spyOn(console,'error')
@@ -13,7 +14,7 @@ afterEach(() => {
 const fakeData = [
   {
     id: 1,
-    title: 'I ate a cow',
+    title: 'I ate a banana',
     date_eaten: '2022-09-22',
     content: 'this is a very long string that can be changed later',
     img: 'www.googleimages.com/bears',
@@ -44,23 +45,25 @@ describe("GET /api/v1/posts", () => {
   it('returns status 200 and an array of objects when db function resolves',()=>{
     getAllPosts.mockReturnValue(Promise.resolve(fakeData))
     return request(server)
-      .get("/api/v1/posts")
+      .get('/api/v1/posts')
       .then((res)=>{
         expect(res.status).toBe(200)
         expect(res.body).toHaveLength(3)
-        expect(res.body[0].title).toBe('I ate a cow')
+        expect(res.body[0].title).toBe('I ate a banana')
       })
   })
   it('returns status 500 and an error message when db function rejects', () => {
   getAllPosts.mockImplementation(() =>
     Promise.reject(new Error('oh dear, sad'))
   )
+
   return request(server)
     .get('/api/v1/posts')
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       expect(res.status).toBe(500)
-      expect(res.text).toBe('oh dear, sad')
+      expect(console.error).toHaveBeenCalledWith(new Error('oh dear, sad'))
+      expect(res.body.message).toBe('Something went wrong')
       return null
     })
 })
