@@ -1,5 +1,5 @@
 exports.up = function (knex) {
-  return knex.schema.createTable('posts', table => {
+  return knex.schema.createTable('posts', (table) => {
     table.increments('id')
     table.string('title')
     table.date('date_eaten')
