@@ -44,11 +44,13 @@ const fakeData = [
 
 describe('fetchPosts', () => {
   it('checks if the request is loading and then it dispatches the GET_POSTS_SUCCESS action if the promise resolves', () => {
-    expect.assertions(2)
+    expect.assertions(3)
     getPosts.mockReturnValue(Promise.resolve(fakeData))
     return fetchPosts()(fakeDispatch).then(() => {
       expect(fakeDispatch.mock.calls[1][0].type).toBe(GET_POSTS_SUCCESS)
       expect(fakeDispatch.mock.calls[0][0].type).toBe(GET_POSTS_REQUEST)
+      expect(fakeDispatch.mock.calls[1][0].payload.posts).toHaveLength(3)
+
     })
   })
   it('should dispatch the GET_POSTS_FAILURE action if the promise rejects', () => {

@@ -1,7 +1,7 @@
 import {GET_POSTS_REQUEST, GET_POSTS_SUCCESS, GET_POSTS_FAILURE} from '../actions/posts'
 
 const initialState = {
-  data: null,
+  data:null,
   loading: true,
   error: null,
 }
