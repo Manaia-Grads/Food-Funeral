@@ -31,7 +31,6 @@ describe('getPost', () => {
     expect.assertions(2)
     getPostById.mockReturnValue(Promise.resolve(fakeData))
     return getPost(1)(fakeDispatch).then(() => {
-      console.log(fakeDispatch)
       expect(fakeDispatch.mock.calls[0][0].type).toBe(GET_POST_REQUEST)
       expect(fakeDispatch.mock.calls[1][0].type).toBe(GET_POST_SUCCESS)
     })

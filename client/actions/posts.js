@@ -25,12 +25,10 @@ export function getPostsFailure(errMessage) {
 }
 
 export function fetchPosts() {
-  console.log('Krissy wants it')
   return (dispatch) => {
     dispatch(getPostsRequest())
     return getPosts()
       .then((posts) => {
-        console.log('posts', posts)
         dispatch(getPostsSuccess(posts))
       })
       .catch((err) => {

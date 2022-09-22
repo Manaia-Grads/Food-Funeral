@@ -11,8 +11,6 @@ export default function Post() {
     dispatch(getPost(2))
   }, [])
 
-  //console.log(`loading: ${loading} error: ${error} post: ${post?.title}`)
-
   return loading ? (
     'loading'
   ) : error ? (
