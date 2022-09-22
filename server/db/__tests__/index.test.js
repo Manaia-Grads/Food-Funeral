@@ -35,3 +35,30 @@ describe('getAllPosts function', () => {
     })
   })
 })
+
+describe('addPost', () => {
+  it('adds a post to the database', () => {
+    return db
+      .addPost(
+        {
+          id: 4,
+          title: 'test',
+          date_eaten: '2022-09-22',
+          content: 'test',
+          img: 'tomato.png',
+          user_id: 1,
+          date_created: '2022-09-22',
+        },
+        4,
+        testDb
+      )
+      .then((numOfRecords) => {
+        expect(numOfRecords).toStrictEqual([4])
+        return db.getPostById(4, testDb)
+      })
+      .then((post) => {
+        expect(post.title).toBe('test')
+        expect(post.img).toBe('tomato.png')
+      })
+  })
+})
