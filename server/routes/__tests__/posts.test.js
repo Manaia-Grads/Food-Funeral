@@ -1,7 +1,7 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getAllPosts } = require('../../db/index.js')
+const { getAllPosts, getPostById } = require('../../db/index.js')
 
 jest.mock('../../db/index.js')
 
@@ -41,6 +41,32 @@ const fakeData = [
   },
 ]
 
+describe('GET /api/v1/posts/:id', () => {
+  it('returns status 200 and an array of objects when db function resolves', () => {
+    getPostById.mockReturnValue(Promise.resolve(fakeData[1]))
+    return request(server)
+      .get('/api/v1/posts/2')
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(res.body.content).toBe(
+          'this is a very long string that can be changed later'
+        )
+        return null
+      })
+  })
+  it('returns status 500 and an error message when db function rejects', () => {
+    getPostById.mockImplementation(() =>
+      Promise.reject(new Error('oh dear, sad'))
+    )
+    return request(server)
+      .get('/api/v1/posts/2')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toBe('oh dear, sad')
+      })
+  })
+})
+
 describe('GET /api/v1/posts', () => {
   it('returns status 200 and an array of objects when db function resolves', () => {
     getAllPosts.mockReturnValue(Promise.resolve(fakeData))
@@ -60,7 +86,6 @@ describe('GET /api/v1/posts', () => {
     return request(server)
       .get('/api/v1/posts')
       .then((res) => {
-        // console.log(res)
         expect(res.status).toBe(500)
         expect(console.error).toHaveBeenCalledWith(new Error('oh dear, sad'))
         expect(res.body.message).toBe('Something went wrong')

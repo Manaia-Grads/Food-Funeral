@@ -1,5 +1,5 @@
 import nock from 'nock'
-import { getPosts } from '../posts'
+import { getPosts, getPostById } from '../posts'
 
 const fakeData = [
   {
@@ -30,6 +30,19 @@ const fakeData = [
     date_created: '2022-09-20',
   },
 ]
+
+describe('GET /api/v1/posts/:id', () => {
+  it('gets a single array of a post', async () => {
+    expect.assertions(2)
+    const scope = nock('http://localhost')
+      .get('/api/v1/posts/2')
+      .reply(200, fakeData[1])
+
+    const post = await getPostById(2)
+    expect(post).toEqual(fakeData[1])
+    expect(scope.isDone()).toBe(true)
+  })
+})
 
 describe('GET /api/v1/posts', () => {
   it('gets an array of post objects', async () => {
