@@ -3,9 +3,9 @@ import Posts from './Posts'
 
 const App = () => {
   return (
-    <div >
+    <div>
       <h1>Food Funeral</h1>
-      <Posts /> 
+      <Posts />
       {/* getPostById(2).then((reply) => {console.log(reply)}) */}
     </div>
   )

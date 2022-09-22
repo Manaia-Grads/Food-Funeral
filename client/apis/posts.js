@@ -10,7 +10,6 @@ export function getPosts() {
     .catch((err) => console.error(err))
 }
 
-
 export function getPostById(id) {
   return request
     .get(`${rootURL}/posts/${id}`)

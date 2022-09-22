@@ -1,36 +1,38 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../actions/posts'
 
 function Posts() {
   const dispatch = useDispatch()
-  useEffect(() => dispatch(fetchPosts()),[])
+  useEffect(() => dispatch(fetchPosts()), [])
 
-  const {data, loading, error } = useSelector(state => state.posts)
+  const { data, loading, error } = useSelector((state) => state.posts)
 
   console.log('component', data, 'loading', loading)
 
   return (
     <>
-    <h1>Food Funeral</h1>
-    <h3>Food Blogging with a conscience.</h3>
-    
-    <div>
-      {!error && loading? (<div> loading...</div>) :(  
-      <>
-      {data?.map(post => (
-        <div key={post.id}> 
-          <h3>{post.title}</h3>
-          <img src={post.img} alt='unfortunately there is no alt text available right now'/>
-          <p>By TBC - username</p>
-        </div>
-      )
-   
-    )}
-     </>
-    )}
-    
-    </div>
+      <h1>Food Funeral</h1>
+      <h3>Food Blogging with a conscience.</h3>
+
+      <div>
+        {!error && loading ? (
+          <div> loading...</div>
+        ) : (
+          <>
+            {data?.map((post) => (
+              <div key={post.id}>
+                <h3>{post.title}</h3>
+                <img
+                  src={post.img}
+                  alt="unfortunately there is no alt text available right now"
+                />
+                <p>By TBC - username</p>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </>
   )
 }

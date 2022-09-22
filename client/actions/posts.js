@@ -19,21 +19,21 @@ export function getPostsSuccess(posts) {
 
 export function getPostsFailure(errMessage) {
   return {
-  type: GET_POSTS_FAILURE,
-  payload: {errMessage},
+    type: GET_POSTS_FAILURE,
+    payload: { errMessage },
   }
 }
 
 export function fetchPosts() {
-  console.log("Krissy wants it" )
+  console.log('Krissy wants it')
   return (dispatch) => {
     dispatch(getPostsRequest())
     return getPosts()
-      .then((posts ) => {
-        console.log("posts",posts )
-      dispatch(getPostsSuccess(posts)) 
+      .then((posts) => {
+        console.log('posts', posts)
+        dispatch(getPostsSuccess(posts))
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(getPostsFailure(err.message))
       })
   }
