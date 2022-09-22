@@ -387,7 +387,7 @@ Make sure disabled buttons don't get the pointer cursor.
 /*
 1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
 2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-This can trigger a poorly considered lint error in some tools but is included by design.
+   This can trigger a poorly considered lint error in some tools but is included by design.
 */
 
 img,
@@ -561,16 +561,8 @@ video {
   display: flex;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .h-48 {
   height: 12rem;
-}
-
-.w-screen {
-  width: 100vw;
 }
 
 .w-3\/4 {
@@ -585,10 +577,6 @@ video {
   flex-direction: column;
 }
 
-.items-center {
-  align-items: center;
-}
-
 .justify-around {
   justify-content: space-around;
 }
@@ -599,11 +587,6 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.bg-sky-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(186 230 253 / var(--tw-bg-opacity));
 }
 
 .bg-yellow-100 {
@@ -623,15 +606,6 @@ video {
 
 .text-center {
   text-align: center;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
-.font-bold {
-  font-weight: 700;
 }
 
 .capitalize {
