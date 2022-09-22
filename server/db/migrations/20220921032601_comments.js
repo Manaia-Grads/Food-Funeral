@@ -3,7 +3,7 @@ exports.up = function (knex) {
     table.increments('id')
     table.varchar('content')
     table.integer('post_id')
-    table.integer('user_id')
+    table.string('auth0_id').references('users.auth0_id')
     table.date('date_created')
   })
 }

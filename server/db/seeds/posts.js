@@ -11,7 +11,7 @@ exports.seed = function (knex) {
           date_eaten: '2022-09-22',
           content: 'this is a very long string that can be changed later',
           img: 'tomato.png',
-          user_id: 1,
+          auth0_id: 1,
           date_created: '2022-09-22',
         },
         {
@@ -20,7 +20,7 @@ exports.seed = function (knex) {
           date_eaten: '2022-09-20',
           content: 'this is a very long string that can be changed later',
           img: 'tomato.png',
-          user_id: 2,
+          auth0_id: 2,
           date_created: '2022-09-21',
         },
         {
@@ -29,7 +29,7 @@ exports.seed = function (knex) {
           date_eaten: '2022-09-19',
           content: 'this is a very long string that can be changed later',
           img: 'tomato.png',
-          user_id: 3,
+          auth0_id: 3,
           date_created: '2022-09-20',
         },
       ])
