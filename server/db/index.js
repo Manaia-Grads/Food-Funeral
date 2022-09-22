@@ -8,8 +8,8 @@ function getAllPosts(db = connection) {
   return db('posts').select()
 }
 
-function addPost(post, id, db = connection) {
-  return db('posts').insert(post).where('id', id)
+function addPost(post, db = connection) {
+  return db('posts').insert(post)
 }
 
 module.exports = {

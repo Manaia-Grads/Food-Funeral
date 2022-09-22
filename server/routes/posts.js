@@ -23,4 +23,18 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  const post = req.body
+  db.addPost(post)
+    .then((id) => {
+      return db.getPostById(id[0])
+    })
+    .then((post) => {
+      res.json(post)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router

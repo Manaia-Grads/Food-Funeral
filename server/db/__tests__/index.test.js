@@ -49,12 +49,11 @@ describe('addPost', () => {
           user_id: 1,
           date_created: '2022-09-22',
         },
-        4,
         testDb
       )
       .then((numOfRecords) => {
         expect(numOfRecords).toStrictEqual([4])
-        return db.getPostById(4, testDb)
+        return db.getPostById(numOfRecords[0], testDb)
       })
       .then((post) => {
         expect(post.title).toBe('test')
