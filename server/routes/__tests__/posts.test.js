@@ -48,8 +48,7 @@ describe('GET /api/v1/posts/:id', () => {
       .get('/api/v1/posts/2')
       .then((res) => {
         expect(res.status).toBe(200)
-        expect(res.body).toHaveLength(1)
-        expect(res.body[0].content).toBe(
+        expect(res.body.content).toBe(
           'this is a very long string that can be changed later'
         )
         return null
