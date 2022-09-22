@@ -1,29 +1,29 @@
-export const FETCH_POST_REQUEST = 'FETCH_POST_REQUEST'
-export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS'
-export const FETCH_POST_FAILURE = 'FETCH_POST_FAILURE'
+export const GET_POST_REQUEST = 'GET_POST_REQUEST'
+export const GET_POST_SUCCESS = 'GET_POST_SUCCESS'
+export const GET_POST_FAILURE = 'GET_POST_FAILURE'
 import { getPostById } from '../apis/posts'
 
-export const fetchPostRequest = () => ({
-  type: FETCH_POST_REQUEST,
+export const getPostRequest = () => ({
+  type: GET_POST_REQUEST,
 })
 
-export const fetchPostSuccess = (post) => ({
-  type: FETCH_POST_SUCCESS,
+export const getPostSuccess = (post) => ({
+  type: GET_POST_SUCCESS,
   payload: { post },
 })
 
-export const fetchPostFailure = (error) => ({
-  type: FETCH_POST_FAILURE,
+export const getPostFailure = (error) => ({
+  type: GET_POST_FAILURE,
   payload: { error },
 })
 
-export const fetchPost = (id) => (dispatch) => {
-  dispatch(fetchPostRequest())
+export const getPost = (id) => (dispatch) => {
+  dispatch(getPostRequest())
   getPostById(id)
     .then((post) => {
-      dispatch(fetchPostSuccess(post))
+      dispatch(getPostSuccess(post))
     })
     .catch((error) => {
-      dispatch(fetchPostFailure(error.message))
+      dispatch(getPostFailure(error.message))
     })
 }

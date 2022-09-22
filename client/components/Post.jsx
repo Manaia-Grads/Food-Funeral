@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchPost } from '../actions/post.js'
+import { getPost } from '../actions/post.js'
 
 export default function Post() {
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
 
   useEffect(() => {
-    dispatch(fetchPost(2))
+    dispatch(getPost(2))
   }, [])
 
   //console.log(`loading: ${loading} error: ${error} post: ${post?.title}`)
