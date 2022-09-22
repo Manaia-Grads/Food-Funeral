@@ -20,8 +20,7 @@ afterAll(() => {
 describe('getPostById', () => {
   it('gets the post by its Id from the database.', () => {
     return db.getPostById(1, testDb).then((postData) => {
-      expect(postData).toHaveLength(1)
-      expect(postData[0].content).toBe(
+      expect(postData.content).toBe(
         'this is a very long string that can be changed later'
       )
     })
