@@ -12,14 +12,14 @@ export const getPostSuccess = (post) => ({
   payload: { post },
 })
 
-export const getPostFailure = (error) => ({
+export const getPostFailure = (errMessage) => ({
   type: GET_POST_FAILURE,
-  payload: { error },
+  payload: { errMessage },
 })
 
 export const getPost = (id) => (dispatch) => {
   dispatch(getPostRequest())
-  getPostById(id)
+  return getPostById(id)
     .then((post) => {
       dispatch(getPostSuccess(post))
     })
