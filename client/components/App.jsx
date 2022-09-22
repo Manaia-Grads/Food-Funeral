@@ -8,6 +8,7 @@ const App = () => {
         I Love Fruit!
       </h1>
       <Fruits />
+      getPostById(2).then((reply)=> {console.log(reply)})
     </div>
   )
 }

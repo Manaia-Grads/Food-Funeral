@@ -1,9 +1,12 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1'
+const rootURL = '/api/v1/posts'
 
 export function getPostById(id) {
-  return request.get(`${rootUrl}/posts/${id}`).then((res) => {
-    return res.body
-  })
+  return request
+    .get(`${rootURL}/${id}`)
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err))
 }
