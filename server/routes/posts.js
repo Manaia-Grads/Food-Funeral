@@ -23,4 +23,19 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  const post = req.body
+  db.addPost(post)
+    .then((ids) => {
+      return db.getPostById(ids[0])
+    })
+    .then((post) => {
+      //returns two console logs - fix later
+      res.json(post) // is it because of two thens? One gets by id and the other returns the json? yep sure
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router
