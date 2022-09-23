@@ -15,8 +15,8 @@ const App = () => {
         </h3>
       </header>
       <main>
-        {/* <Posts />
-        <Post /> */}
+        <Posts />
+        <Post />
         <AddPost />
       </main>
     </div>
