@@ -14,6 +14,7 @@ router.get('/:id', (req, res) => {
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
+      console.log(posts)
       res.json(posts)
       return null
     })
