@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import { getPost } from '../actions/post.js'
 
 export default function Post() {
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
+  const { id } = useParams()
+  console.log(id)
 
   useEffect(() => {
-    dispatch(getPost(2))
+    dispatch(getPost(id))
   }, [])
 
   return loading ? (
@@ -33,13 +36,3 @@ export default function Post() {
     </>
   )
 }
-
-// {
-//   id: 1,
-//   title: 'I ate a cow',
-//   date_eaten: '2022-09-22',
-//   content: 'this is a very long string that can be changed later',
-//   img: 'www.googleimages.com/bears',
-//   user_id: 1,
-//   date_created: '2022-09-22',
-// },
