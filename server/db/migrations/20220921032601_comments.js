@@ -2,8 +2,8 @@ exports.up = function (knex) {
   return knex.schema.createTable('comments', (table) => {
     table.increments('id')
     table.varchar('content')
-    table.integer('post_id')
-    table.string('auth0_id').references('users.auth0_id')
+    table.integer('post_id').references('posts.id')
+    table.string('auth0_id')
     table.date('date_created')
   })
 }

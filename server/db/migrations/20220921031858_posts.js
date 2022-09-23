@@ -5,7 +5,7 @@ exports.up = function (knex) {
     table.date('date_eaten')
     table.varchar('content')
     table.string('img')
-    table.string('auth0_id').references('users.auth0_id')
+    table.string('auth0_id')
     table.date('date_created')
   })
 }

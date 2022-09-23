@@ -1,10 +1,13 @@
 import React from 'react'
+
 import Post from './Post'
 import Posts from './Posts'
-//import { useCacheUser } from '../auth0-utils'
+import Register from './Register'
+
+import { useCacheUser } from '../auth0-utils'
 
 const App = () => {
-  //useCacheUser()
+  useCacheUser()
   return (
     <div>
       <h1>Food Funeral</h1>
