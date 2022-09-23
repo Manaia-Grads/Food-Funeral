@@ -32,9 +32,7 @@ describe('addNewPost', () => {
     return addNewPost(fakeData)(fakeDispatch).then(() => {
       expect(fakeDispatch.mock.calls[0][0].type).toBe(ADD_POST_REQUEST)
       expect(fakeDispatch.mock.calls[1][0].type).toBe(ADD_POST_SUCCESS)
-      expect(fakeDispatch.mock.calls[1][0].payload.post.title).toBe(
-        'I ate an apple'
-      )
+      expect(fakeDispatch.mock.calls[1][0].payload.title).toBe('I ate an apple')
     })
   })
   it('should dispatch the ADD_POST_FAILURE action if the promise rejects', () => {

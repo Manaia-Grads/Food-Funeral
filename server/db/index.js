@@ -13,6 +13,9 @@ function addPost(post, db = connection) {
     title: post.title,
     content: post.content,
     date_eaten: post.date,
+    img: post.img,
+    user_id: post.user_id,
+    date_created: post.date_created,
   })
 }
 

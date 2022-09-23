@@ -51,9 +51,9 @@ describe('addPost', () => {
         },
         testDb
       )
-      .then((numOfRecords) => {
-        expect(numOfRecords).toStrictEqual([4])
-        return db.getPostById(numOfRecords[0], testDb)
+      .then((ids) => {
+        expect(ids).toStrictEqual([4])
+        return db.getPostById(ids[0], testDb)
       })
       .then((post) => {
         expect(post.title).toBe('test')
