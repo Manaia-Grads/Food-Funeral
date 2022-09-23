@@ -1,3 +1,4 @@
 *.md
 *.json
 tailwind.config.js
+coverage/*

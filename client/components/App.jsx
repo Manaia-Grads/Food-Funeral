@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Post from './Post'
 import Posts from './Posts'
 import AddPost from './AddPost'
+import Navbar from './Navbar'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <h3 className={'text-3xl text-center'}>
           <i>A food blog with feeling</i>
         </h3>
+        <Navbar />
       </header>
       <main>
         <Routes>
