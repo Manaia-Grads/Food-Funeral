@@ -9,7 +9,7 @@ export const addPostRequest = () => ({
 
 export const addPostSuccess = (post) => ({
   type: ADD_POST_SUCCESS,
-  payload: { post },
+  payload: post,
 })
 
 export const addPostFailure = (errMessage) => ({

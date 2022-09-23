@@ -16,7 +16,7 @@ export default function myPostReducer(state = initialState, action) {
     case ADD_POST_REQUEST:
       return { ...state, loading: true, error: null }
     case ADD_POST_SUCCESS:
-      return { data: payload.post, loading: false, error: null }
+      return { data: payload, loading: false, error: null }
     case ADD_POST_FAILURE:
       return { ...state, loading: false, error: payload.error }
     default:

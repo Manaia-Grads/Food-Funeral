@@ -9,7 +9,11 @@ function getAllPosts(db = connection) {
 }
 
 function addPost(post, db = connection) {
-  return db('posts').insert(post)
+  return db('posts').insert({
+    title: post.title,
+    content: post.content,
+    date_eaten: post.date,
+  })
 }
 
 module.exports = {

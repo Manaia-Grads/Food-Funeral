@@ -22,7 +22,9 @@ export function getPostById(id) {
 export function addPost(post) {
   return request
     .post(`${rootURL}/posts`)
-    .send({ post })
-    .then((res) => res.body)
+    .send(post)
+    .then((res) => {
+      return res.body
+    })
     .catch((err) => console.error(err.message))
 }
