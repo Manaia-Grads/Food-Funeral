@@ -1,5 +1,13 @@
 import nock from 'nock'
-import { getPosts, getPostById } from '../posts'
+import { getPosts, getPostById, addPost } from '../posts'
+
+jest.spyOn(console, 'error')
+
+afterEach(() => {
+  console.error.mockReset()
+})
+
+const rootURL = 'http://localhost'
 
 const fakeData = [
   {
@@ -34,9 +42,7 @@ const fakeData = [
 describe('GET /api/v1/posts/:id', () => {
   it('gets a single array of a post', async () => {
     expect.assertions(2)
-    const scope = nock('http://localhost')
-      .get('/api/v1/posts/2')
-      .reply(200, fakeData[1])
+    const scope = nock(rootURL).get('/api/v1/posts/2').reply(200, fakeData[1])
 
     const post = await getPostById(2)
     expect(post).toEqual(fakeData[1])
@@ -47,12 +53,54 @@ describe('GET /api/v1/posts/:id', () => {
 describe('GET /api/v1/posts', () => {
   it('gets an array of post objects', async () => {
     expect.assertions(2)
-    const scope = nock('http://localhost')
-      .get('/api/v1/posts')
-      .reply(200, fakeData)
+    const scope = nock(rootURL).get('/api/v1/posts').reply(200, fakeData)
 
     const posts = await getPosts()
     expect(posts).toEqual(fakeData)
     expect(scope.isDone()).toBe(true)
+  })
+})
+
+describe('POST /api/v1/posts', () => {
+  it('returns one (new) post', async () => {
+    expect.assertions(2)
+    const scope = nock(rootURL).post('/api/v1/posts').reply(200, fakeData[0])
+
+    const post = await addPost(fakeData[0])
+    expect(post).toEqual(fakeData[0])
+    expect(scope.isDone()).toBe(true)
+  })
+})
+
+describe('errors are returned correctly', () => {
+  const errMessage = 'uh oh, this is an error'
+  it('returns an error on getPosts', async () => {
+    expect.assertions(2)
+
+    const scope = nock(rootURL).get('/api/v1/posts').replyWithError(errMessage)
+    return getPosts().then(() => {
+      expect(scope.isDone()).toBeTruthy()
+      expect(console.error).toHaveBeenCalledWith(errMessage)
+    })
+  })
+  it('returns an error on getPostsById func', async () => {
+    expect.assertions(2)
+
+    const scope = nock(rootURL)
+      .get('/api/v1/posts/1')
+      .replyWithError(errMessage)
+    return getPostById(fakeData[0].id).then(() => {
+      expect(scope.isDone()).toBeTruthy()
+      expect(console.error).toHaveBeenCalledWith(errMessage)
+    })
+  })
+  it('returns an error', async () => {
+    expect.assertions(2)
+
+    const scope = nock(rootURL).post('/api/v1/posts').replyWithError(errMessage)
+    return addPost(fakeData[0]).then(() => {
+      expect(scope.isDone()).toBeTruthy()
+      expect(console.error).toHaveBeenCalledWith(errMessage)
+    })
   })
 })

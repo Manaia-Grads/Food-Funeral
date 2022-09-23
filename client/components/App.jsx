@@ -1,26 +1,26 @@
 import React from 'react'
-
+import { Routes, Route } from 'react-router-dom'
 import Post from './Post'
 import Posts from './Posts'
-import Register from './Register'
-
-import { useCacheUser } from '../auth0-utils'
+import AddPost from './AddPost'
+import Navbar from './Navbar'
 
 const App = () => {
-  useCacheUser()
   return (
     <div>
-      <h1>Food Funeral</h1>
-
       <header className={'pt-2 pb-5'}>
         <h1 className={'text-6xl text-center'}>Food Funeral</h1>
         <h3 className={'text-3xl text-center'}>
-          Food Blogging with a conscience.
+          <i>A food blog with feeling</i>
         </h3>
+        <Navbar />
       </header>
       <main>
-        <Posts />
-        <Post />
+        <Routes>
+          <Route path="/" element={<Posts />} />
+          <Route path="/posts/:id" element={<Post />} />
+          <Route path="/create-post" element={<AddPost />} />
+        </Routes>
       </main>
     </div>
   )

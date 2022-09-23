@@ -8,7 +8,19 @@ function getAllPosts(db = connection) {
   return db('posts').select()
 }
 
+function addPost(post, db = connection) {
+  return db('posts').insert({
+    title: post.title,
+    content: post.content,
+    date_eaten: post.date,
+    img: post.img,
+    user_id: post.user_id,
+    date_created: post.date_created,
+  })
+}
+
 module.exports = {
   getAllPosts,
   getPostById,
+  addPost,
 }

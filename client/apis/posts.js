@@ -7,7 +7,7 @@ export function getPosts() {
     .then((res) => {
       return res.body
     })
-    .catch((err) => console.error(err))
+    .catch((err) => console.error(err.message))
 }
 
 export function getPostById(id) {
@@ -16,7 +16,17 @@ export function getPostById(id) {
     .then((res) => {
       return res.body
     })
-    .catch((err) => console.error(err))
+    .catch((err) => console.error(err.message))
+}
+
+export function addPost(post) {
+  return request
+    .post(`${rootURL}/posts`)
+    .send(post)
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
 }
 
 export function getUser(token) {
