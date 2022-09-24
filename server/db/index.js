@@ -14,8 +14,8 @@ function addPost(post, db = connection) {
     content: post.content,
     date_eaten: post.date,
     img: post.img,
-    auth0_id: post.auth0_id,//????
-    date_created: post.date_created,
+    auth0_id: post.auth0_id,
+    date_created: Date.now(),
   })
 }
 

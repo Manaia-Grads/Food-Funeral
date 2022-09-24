@@ -10,6 +10,7 @@ function AddPost() {
     title: '',
     date: '',
     content: '',
+    auth0_id: 'Guest',
   }
   const [form, setForm] = useState(initialData)
 
@@ -29,12 +30,14 @@ function AddPost() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Write a Post</h2>
+      <h2>Write a Post (Guest User)</h2>
       <p>Posting Guidelines:</p>
       <p>
         When blogging about your meal, it&apos;s suggested to give a specific
         food item a eulogy-like send off
       </p>
+
+      <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
 
       <label htmlFor="title">Post Title</label>
       <input onChange={handleChange} name="title" id="title" type="text" />
@@ -50,7 +53,10 @@ function AddPost() {
         type="textarea"
       />
 
-      <input type="submit" />
+      <input //Grant: used css from tailwind https://v1.tailwindcss.com/components/forms
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
+      />
     </form>
   )
 }
