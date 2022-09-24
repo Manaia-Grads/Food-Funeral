@@ -20,7 +20,7 @@ export default function Post() {
     'No post here'
   ) : (
     <>
-      <div>
+      <div className="flex flex-col items-center justify-center">
         <h1>{post?.title}</h1>
         <div>
           <img src={'/images/' + post?.img} alt={post?.title} />

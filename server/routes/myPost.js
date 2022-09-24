@@ -48,8 +48,6 @@ router.post('/', checkJwt, (req, res) => {
     })
 })
 
-
-
 // router.post('/', checkJwt, (req, res) => {
 //   const ownerId = req.user?.sub
 //   const { name, animal, age, bio, imageUrl } = req.body

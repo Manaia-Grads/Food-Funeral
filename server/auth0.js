@@ -1,5 +1,4 @@
-
-const { expressjwt:jwt } = require('express-jwt')
+const { expressjwt: jwt } = require('express-jwt')
 const jwks = require('jwks-rsa')
 
 const domain = 'https://food-funeral.au.auth0.com'

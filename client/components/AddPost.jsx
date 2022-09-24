@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-import { addPost } from '../apis/posts'
 import { addNewPost } from '../actions/addPost'
 
 function AddPost() {
+  const navigate = useNavigate()
+
+  const {
+    data: newPost,
+    loading,
+    error,
+  } = useSelector((state) => state.addPost)
+
   const dispatch = useDispatch()
   const initialData = {
     title: '',
@@ -26,8 +34,12 @@ function AddPost() {
     setForm(form)
     dispatch(addNewPost(form))
     setForm(initialData)
+
+    //console.log(newPost?.id)
+    //navigate(`/posts/${newPost.id}`) ????help!
   }
 
+  //https://github.com/manaia-2022/patch/blob/demo/client/components/Routes/AddPet.jsx
   return (
     <form onSubmit={handleSubmit}>
       <h2>Write a Post (Guest User)</h2>

@@ -1,6 +1,6 @@
 // export const SET_USER = 'SET_USER'
 // export const CLEAR_USER = 'CLEAR_USER'
-import {addUser} from "../apis/users"
+import { addUser } from '../apis/users'
 
 // export function setUser(user) {
 //   return {
@@ -25,6 +25,3 @@ export function getUserById(id, token) {
   // return request.get(`/api/v1/users/{id}`)
   return null
 }
-
-
-
