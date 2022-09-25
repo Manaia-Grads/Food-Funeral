@@ -29,14 +29,17 @@ function AddPost() {
     })
   }
 
+  useEffect(() => {
+    if (newPost?.id != undefined) {
+      navigate(`/posts/${newPost.id}`)
+    }
+  }, [newPost])
+
   const handleSubmit = (evt) => {
     evt.preventDefault()
     setForm(form)
     dispatch(addNewPost(form))
     setForm(initialData)
-
-    //console.log(newPost?.id)
-    //navigate(`/posts/${newPost.id}`) ????help!
   }
 
   //https://github.com/manaia-2022/patch/blob/demo/client/components/Routes/AddPet.jsx
@@ -49,7 +52,7 @@ function AddPost() {
         food item a eulogy-like send off
       </p>
 
-      <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
+      {/* <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" /> */}
 
       <label htmlFor="title">Post Title</label>
       <input onChange={handleChange} name="title" id="title" type="text" />
