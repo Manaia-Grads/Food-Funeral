@@ -1,6 +1,6 @@
 // export const SET_USER = 'SET_USER'
 // export const CLEAR_USER = 'CLEAR_USER'
-import { addUser } from '../apis/users'
+//import { addUser } from '../apis/users'
 
 // export function setUser(user) {
 //   return {
@@ -21,7 +21,7 @@ import { addUser } from '../apis/users'
 // https://auth0.com/docs/api/management/v2#!/Users/get_users_by_id
 //https://auth0.com/docs/manage-users/user-search/retrieve-users-with-get-users-endpoint
 
-export function getUserById(id, token) {
-  // return request.get(`/api/v1/users/{id}`)
-  return null
-}
+// export function getUserById(id, token) {
+//   // return request.get(`/api/v1/users/{id}`)
+//   return null
+// }
