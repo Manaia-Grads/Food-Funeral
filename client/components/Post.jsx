@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import { getPost } from '../actions/post.js'
+import AddComment from './AddComment.jsx'
 
 export default function Post() {
   const dispatch = useDispatch()
@@ -30,6 +31,9 @@ export default function Post() {
           <p>Posted By: {post?.auth0_id}</p>
         </div>
         <div>{post?.content}</div>
+        <div>
+          <AddComment />
+        </div>
       </div>
     </>
   )
