@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import multer from 'multer'
 
 import { addNewPost } from '../actions/addPost'
 
@@ -18,6 +19,7 @@ function AddPost() {
     title: '',
     date: '',
     content: '',
+    img: '',
     auth0_id: 'Guest',
   }
   const [form, setForm] = useState(initialData)
