@@ -1,10 +1,14 @@
 {
-  "name": "boilerplate-fullstack-css",
+  "name": "food-funeral",
   "version": "2.0.0",
   "main": "server/index.js",
   "license": "MIT",
+  "authors": "Ling, Hamish, Bleu and Grant",
   "keywords": [
-    "fullstack"
+    "fullstack", 
+    "blog",
+    "dark humour",
+    "final-project"
   ],
   "scripts": {
     "start": "node server",

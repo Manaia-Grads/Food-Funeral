@@ -43,24 +43,6 @@ export default function Navbar() {
 
               {isAuthenticated ? (
                 <>
-                  {/* <li>
-                  <Link
-                    to='/create-post'
-                    className='block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-blue-400 hover:text-white focus:bg-blue-400 focus:outline-none focus:ring focus:ring-violet-400 md:border-2 md:p-2 md:text-white md:hover:text-white'
-                  >
-                    Create Post
-                  </Link>
-                </li> */}
-
-                  {/* <li>
-                  <Link
-                    to='/my-posts'
-                    className='block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-purple-900 hover:text-white focus:bg-purple-900 focus:outline-none focus:ring focus:ring-violet-400 md:border-2 md:p-2 md:text-white md:hover:text-white'
-                  >
-                    My Posts
-                  </Link>
-                </li> */}
-
                   <li className="absolute right-52 mt-2 md:text-white">
                     {user?.name} {' ' + 'AKA ' + user?.nickname}
                   </li>
