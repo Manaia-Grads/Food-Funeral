@@ -20,19 +20,17 @@ export default function Post() {
     'No post here'
   ) : (
     <>
-      <div>
+      <div className="flex flex-col items-center justify-center">
         <h1>{post?.title}</h1>
         <div>
-          <img src={post?.img} alt={post?.title} />
+          <img src={'/images/' + post?.img} alt={post?.title} />
         </div>
         <div>
           <p>{post?.date_eaten}</p>
-          <p>UserName (placeholder)</p>
-          {/* username here <p>{post?.user_id}</p> */}
+          <p>Posted By: {post?.auth0_id}</p>
         </div>
         <div>{post?.content}</div>
       </div>
-      {/*?? <Comments postId={id}/> */}
     </>
   )
 }

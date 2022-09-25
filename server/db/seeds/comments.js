@@ -7,14 +7,14 @@ exports.seed = function (knex) {
           id: 1,
           content: 'yum!!',
           post_id: '1',
-          user_id: '1',
+          auth0_id: 'Guest',
           date_created: '2022-09-22',
         },
         {
           id: 2,
           content: 'a cow, really??',
           post_id: '1',
-          user_id: '1',
+          auth0_id: 'Guest',
           date_created: '2022-09-22',
         },
       ])

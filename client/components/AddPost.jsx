@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-import { addPost } from '../apis/posts'
 import { addNewPost } from '../actions/addPost'
 
 function AddPost() {
+  const navigate = useNavigate()
+
+  const {
+    data: newPost,
+    loading,
+    error,
+  } = useSelector((state) => state.addPost)
+
   const dispatch = useDispatch()
   const initialData = {
     title: '',
     date: '',
     content: '',
+    auth0_id: 'Guest',
   }
   const [form, setForm] = useState(initialData)
 
@@ -25,16 +34,22 @@ function AddPost() {
     setForm(form)
     dispatch(addNewPost(form))
     setForm(initialData)
+
+    //console.log(newPost?.id)
+    //navigate(`/posts/${newPost.id}`) ????help!
   }
 
+  //https://github.com/manaia-2022/patch/blob/demo/client/components/Routes/AddPet.jsx
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Write a Post</h2>
+      <h2>Write a Post (Guest User)</h2>
       <p>Posting Guidelines:</p>
       <p>
         When blogging about your meal, it&apos;s suggested to give a specific
         food item a eulogy-like send off
       </p>
+
+      <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
 
       <label htmlFor="title">Post Title</label>
       <input onChange={handleChange} name="title" id="title" type="text" />
@@ -50,7 +65,10 @@ function AddPost() {
         type="textarea"
       />
 
-      <input type="submit" />
+      <input //Grant: used css from tailwind https://v1.tailwindcss.com/components/forms
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        type="submit"
+      />
     </form>
   )
 }

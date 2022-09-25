@@ -21,7 +21,7 @@ function Posts() {
             />
           </div>
         ) : (
-          <div className={'flex'}>
+          <div className="inline-grid grid-cols-3 grid-rows-1 gap-2">
             {data?.map((post) => (
               <Link key={post.id} to={`/posts/${post.id}`}>
                 <div className={'flex-auto'}>
@@ -31,7 +31,7 @@ function Posts() {
                     src={'/images/' + post.img}
                     alt="unfortunately there is no alt text available right now"
                   />
-                  <p className={'text-blue-400'}>By TBC - username</p>
+                  <p className={'text-blue-400'}>Posted By: {post.auth0_id}</p>
                 </div>
               </Link>
             ))}
