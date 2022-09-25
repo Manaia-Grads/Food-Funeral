@@ -1,30 +1,63 @@
-# Fullstack boilerplate
+# Food Funeral
+> Food blogging with feeling
 
-## Getting Started
+### Created by:
+ - Hamish (Product Owner)
+ - Ling (Vibes Watcher)
+ - Grant (Git Keeper)
+ - Bleu (Agile Facilitator)
 
-### From the Github UI
+## The Premise:
 
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
+It's 2022, there's no fun left to be had in the world without eating or being eaten. 
 
-### From the command line
+Queue Food Funeral, a way to memorialise your meals by personifying and mourning the items you've eaten. It's Mr Potato-Head gone deliciously awry... 
 
-```
-git clone https://github.com/dev-academy-challenges/boilerplate-fullstack [your-project-name]
-cd [your-project-name]
-npm install # to install dependencies
-npm run dev # to start the dev server
-```
+Sign in to create a post, view posts from other meal-murderers from around the globe and comment on your favourites (this feature is in development). 
 
-You can find the server running on [http://localhost:3000](http://localhost:3000).
+## Learning Objectives
 
-## Details
+Hamish:
+ - Testing
+ - GitHub actions
+ - CSS
+ - Create user stories 
 
-This repo includes:
+Ling: 
+ - Auth0
+ - Tailwind
+ - Enjoy the process and have fun
+ - Testing
+ - State management
 
-- a single, simple API endpoint (`/api/v1/fruits`)
-- a single React component (`<App />`)
-- an example database module (`server/db/fruits.js`)
-- an API client module (`client/apis/fruits.js`)
-- configuration for Jest and testing library
-- configuration for server-side debugging in VS Code
-- a single client-side test (`client/components/App.test.js`)
+Grant:
+ - Auth0
+ - State mamangement
+ - Practise enthusiasm
+
+Bleu:
+ - Testing
+ - Full stack tickets
+ - work smarter not harder
+ - practise agile facilitation
+## Minimum Deliverable Product:
+
+Our users want to: 
+- [x] View all posts
+- [x] View a single post
+
+## Minimum Viable Product
+
+Our users want to:
+ - [x] Write a blog post (text only)
+ - [ ] Add a comment *in progress*
+
+## Stretch
+
+Our users want to: 
+- [x] Login, logout, register securely 
+- [ ] Write a post when logged in *in progress*
+- [ ] Add an image to their post *in progress*
+- [ ] Edit their own blog posts
+- [ ] Delete their own blog post
+
