@@ -2,6 +2,7 @@ import {
   ADD_POST_FAILURE,
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
+  CLEAR_ADD_POST,
 } from '../actions/addPost'
 
 const initialState = {
@@ -19,6 +20,8 @@ export default function myPostReducer(state = initialState, action) {
       return { data: payload, loading: false, error: null }
     case ADD_POST_FAILURE:
       return { ...state, loading: false, error: payload.error }
+    case CLEAR_ADD_POST:
+      return initialState
     default:
       return state
   }

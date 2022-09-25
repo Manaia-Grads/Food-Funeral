@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { addNewPost } from '../actions/addPost'
+import { addNewPost, clearAddPost } from '../actions/addPost'
 
 function AddPost() {
   const navigate = useNavigate()
@@ -28,6 +28,13 @@ function AddPost() {
       [evt.target.name]: evt.target.value,
     })
   }
+
+  useEffect(() => {
+    if (newPost?.id != undefined) {
+      navigate(`/posts/${newPost.id}`)
+      dispatch(clearAddPost())
+    }
+  }, [newPost])
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
