@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import multer from 'multer'
 
-import { addNewPost } from '../actions/addPost'
+import { addNewPost, clearAddPost } from '../actions/addPost'
 
 function AddPost() {
   const navigate = useNavigate()
@@ -34,6 +34,7 @@ function AddPost() {
   useEffect(() => {
     if (newPost?.id != undefined) {
       navigate(`/posts/${newPost.id}`)
+      dispatch(clearAddPost())
     }
   }, [newPost])
 
