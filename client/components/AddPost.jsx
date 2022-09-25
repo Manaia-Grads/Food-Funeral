@@ -43,37 +43,60 @@ function AddPost() {
     setForm(initialData)
   }
 
-  //https://github.com/manaia-2022/patch/blob/demo/client/components/Routes/AddPet.jsx
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Write a Post (Guest User)</h2>
-      <p>Posting Guidelines:</p>
-      <p>
-        When blogging about your meal, it&apos;s suggested to give a specific
-        food item a eulogy-like send off
-      </p>
+    <>
+      <div>
+        <h2 className="text-3xl text-center">Write a Post</h2>
+        <p className="text-xl text-center">Posting Guidelines:</p>
+        <p className="text-center ">
+          When blogging about your meal, it&apos;s suggested to give a specific
+          food item a eulogy-like send off. Respect your food by giving it a
+          memorable send off.
+        </p>
+      </div>
+      <form className="content-center" onSubmit={handleSubmit}>
+        <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
 
-      {/* <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" /> */}
+        <br />
 
-      <label htmlFor="title">Post Title</label>
-      <input onChange={handleChange} name="title" id="title" type="text" />
+        <label htmlFor="title">Post Title</label>
+        <input
+          className="border"
+          onChange={handleChange}
+          name="title"
+          id="title"
+          type="text"
+        />
 
-      <label htmlFor="date">Time of Death</label>
-      <input onChange={handleChange} name="date" id="date" type="date" />
+        <br />
 
-      <label htmlFor="content">Your blog</label>
-      <input
-        onChange={handleChange}
-        name="content"
-        id="content"
-        type="textarea"
-      />
+        <label htmlFor="date">Time of Death</label>
+        <input
+          className="border"
+          onChange={handleChange}
+          name="date"
+          id="date"
+          type="date"
+        />
 
-      <input //Grant: used css from tailwind https://v1.tailwindcss.com/components/forms
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit"
-      />
-    </form>
+        <br />
+
+        <label htmlFor="content">Your blog</label>
+        <textarea
+          className="border"
+          onChange={handleChange}
+          name="content"
+          id="content"
+        />
+
+        <br />
+
+        <input
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        />
+      </form>
+    </>
   )
 }
 

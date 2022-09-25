@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <App />
         </Router>
       </Provider>
-      ,
     </Auth0Provider>,
     document.getElementById('app')
   )
