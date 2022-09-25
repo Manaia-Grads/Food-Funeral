@@ -60,6 +60,9 @@ function AddPost() {
       <label htmlFor="title">Post Title</label>
       <input onChange={handleChange} name="title" id="title" type="text" />
 
+      <label htmlFor="img">Upload Image</label>
+      <input onChange={handleChange} name="img" id="img" type="file" />
+
       <label htmlFor="date">Time of Death</label>
       <input onChange={handleChange} name="date" id="date" type="date" />
 
