@@ -24,8 +24,8 @@ function deletePostById(postId, db = connection) {
   return db('posts').where('id', postId).del()
 }
 
-function updatePost(post, db = connection) {
-  return db('posts').where('id', post.Id).update({
+function updatePost(post, postId, db = connection) {
+  return db('posts').where('id', postId).update({
     title: post.title,
     content: post.content,
     date_eaten: post.date,

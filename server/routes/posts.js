@@ -56,7 +56,7 @@ router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
     })
 })
 
-router.update('/', checkJwt, multerUpload.single('file'), (req, res) => {
+router.update('/:id', checkJwt, multerUpload.single('file'), (req, res) => {
   const post = req.body
 
   if (!post.auth0_id) {
@@ -66,7 +66,7 @@ router.update('/', checkJwt, multerUpload.single('file'), (req, res) => {
 
   post.image = req.file.path.substring(29)
 
-  db.updatePost(post)
+  db.updatePost(post, req.params.id)
     .then((ids) => {
       return db.getPostById(ids[0])
     })
