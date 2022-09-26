@@ -1,6 +1,7 @@
 export const GET_POST_REQUEST = 'GET_POST_REQUEST'
 export const GET_POST_SUCCESS = 'GET_POST_SUCCESS'
 export const GET_POST_FAILURE = 'GET_POST_FAILURE'
+export const DELETE_POST = 'GET_POST_FAILURE'
 import { getPostById } from '../apis/posts'
 
 export const getPostRequest = () => ({
