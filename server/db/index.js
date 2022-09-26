@@ -20,8 +20,41 @@ function addPost(post, db = connection) {
   })
 }
 
+
+function deletePostById(postId, db = connection) {
+  return db('posts').where('id', postId).del()
+}
+
+function getAllCommentsByPostId(id, db = connection) {
+  return db('comments')
+    .select(
+      '*',
+      'post_id as postId',
+      'auth0_id as auth0Id',
+      'date_created as date'
+    )
+    .where('post_id', id)
+}
+
+function addComment(comment, postId, db = connection) {
+  return db('comments').insert({
+    content: comment.content,
+    post_id: postId,
+    auth0_id: comment.auth0Id,
+    date_created: Date.now(),
+  })
+}
+
+function getCommentById(id, db = connection) {
+  return db('comments').select().where('id', id).first()
+}
+
 module.exports = {
   getAllPosts,
   getPostById,
   addPost,
+  deletePostById,
+  getAllCommentsByPostId,
+  getCommentById,
+  addComment,
 }

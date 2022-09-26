@@ -7,6 +7,7 @@ function AddPost() {
   const { getAccessTokenSilently } = useAuth0()
   const navigate = useNavigate()
 
+
   const { user, logout, loginWithRedirect, isLoading, isAuthenticated } =
     useAuth0()
 
@@ -20,6 +21,7 @@ function AddPost() {
   const [form, setForm] = useState(initialData)
 
   const handleChange = (evt) => {
+
     if (evt.target.name === 'file') {
       setForm({ ...form, file: evt.target.files[0] })
     } else {
@@ -29,11 +31,11 @@ function AddPost() {
         [evt.target.name]: evt.target.value,
       })
     }
+
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-
     const formData = new FormData()
     formData.append('file', form.file)
     formData.append('title', form.title)

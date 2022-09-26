@@ -2,12 +2,16 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getPost } from '../actions/post.js'
+import DeletePost from './DeletePost.jsx'
+import AddComment from './AddComment.jsx'
+import Comments from './Comments.jsx'
 
 export default function Post() {
+  // comments from JV around removing redux from here
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
-
+  console.log('post', post)
   useEffect(() => {
     dispatch(getPost(id))
   }, [])
@@ -32,6 +36,14 @@ export default function Post() {
           <p>Posted By: {post?.name}</p>
         </div>
         <div>{post?.content}</div>
+
+        <DeletePost id={id} auth0_id={post.auth0_id} />
+
+        <div>
+          <Comments />
+          <AddComment />
+        </div>
+
       </div>
     </>
   )
