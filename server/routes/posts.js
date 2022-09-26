@@ -27,7 +27,6 @@ router.get('/', (req, res) => {
 router.post('/', multerUpload.single('file'), (req, res) => {
   const post = req.body
   post.image = req.file.path.substring(29)
-  console.log(post)
 
   db.addPost(post)
     .then((ids) => {
