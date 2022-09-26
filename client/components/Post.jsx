@@ -16,7 +16,7 @@ export default function Post() {
     dispatch(getPost(id))
   }, [])
 
-  function clickHandler() {
+  function updateClickHandler() {
     console.log(renderUpdateButton)
     setUpdate({ updateStatus: true })
   }
@@ -43,13 +43,13 @@ export default function Post() {
         <div>{post?.content}</div>
 
         <button
-          onClick={clickHandler}
+          onClick={updateClickHandler}
           className="block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-green-700 hover:text-white  md:border-2 md:border-purple-900 md:bg-purple-900 md:p-2 md:text-white md:hover:text-white"
         >
           Update
         </button>
+        {update.updateStatus && <UpdatePost postData={post} />}
       </div>
-      {update.updateStatus && <UpdatePost />}
     </>
   )
 }
