@@ -22,4 +22,4 @@ function DeletePost({ id, auth0_id }) {
   )
 }
 
-export default withAuthenticationRequired(DeletePost)
+export default DeletePost

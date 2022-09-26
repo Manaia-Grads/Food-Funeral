@@ -72,7 +72,27 @@ describe('getAllCommentsByPostId', () => {
 })
 
 describe('addComment', () => {
-  it.todo('adds a comment object to the db')
+  it('adds a comment object to the db', () => {
+    return db
+      .addComment(
+        {
+          content: 'yummy!!',
+          auth0_id: 'google-oauth2|103547991597142817347',
+          name: 'John Foo',
+          date_created: '2022-09-22',
+        },
+        3,
+        testDb
+      )
+      .then((ids) => {
+        expect(ids).toStrictEqual([3])
+        return db.getCommentById(ids[0], testDb)
+      })
+      .then((comment) => {
+        expect(comment.content).toBe('yummy!!')
+        expect(comment.post_id).toBe(3)
+      })
+  })
 })
 
 describe('getCommentById', () => {
