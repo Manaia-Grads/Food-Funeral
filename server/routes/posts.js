@@ -5,7 +5,6 @@ const db = require('../db/index')
 
 const { multerUpload } = require('../../middleware/multer')
 const router = express.Router()
-//const getAuthDetails = require('./authUsers')
 
 router.get('/:id', (req, res) => {
   const { id } = req.params

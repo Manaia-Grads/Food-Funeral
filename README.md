@@ -56,8 +56,8 @@ Our users want to:
 
 Our users want to: 
 - [x] Login, logout, register securely 
-- [ ] Write a post when logged in *in progress*
-- [ ] Add an image to their post *in progress*
+- [x] Write a post when logged in *in progress*
+- [x] Add an image to their post *in progress*
 - [ ] Edit their own blog posts
 - [ ] Delete their own blog post
 
