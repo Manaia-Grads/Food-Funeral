@@ -19,6 +19,7 @@ export default function myPostReducer(state = initialState, action) {
       return { data: payload.post, loading: false, error: null }
     case GET_POST_FAILURE:
       return { ...state, loading: false, error: payload.error }
+     
     default:
       return state
   }
