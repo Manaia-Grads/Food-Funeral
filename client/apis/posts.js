@@ -32,7 +32,12 @@ export function addPost(post, token) {
 
 export function deletePostDataById(id) {
   return request.delete(rootURL + '/posts/' + id).then((res) => {
-    console.log(res.status)
+    return res.body
+  })
+}
+
+export function updatePost(post) {
+  return request.update(`${rootURL}/posts/${post.id}`).then((res) => {
     return res.body
   })
 }
