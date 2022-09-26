@@ -61,3 +61,20 @@ describe('addPost', () => {
       })
   })
 })
+
+describe('getAllCommentsByPostId', () => {
+  it('gets an array of comment objects', () => {
+    return db.getAllCommentsByPostId(1, testDb).then((comments) => {
+      expect(comments).toHaveLength(2)
+      expect(comments[0].content).toBe('yum!!')
+    })
+  })
+})
+
+describe('addComment', () => {
+  it.todo('adds a comment object to the db')
+})
+
+describe('getCommentById', () => {
+  it.todo("gets a comment object by it's id")
+})
