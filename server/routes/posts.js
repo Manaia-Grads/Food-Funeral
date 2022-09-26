@@ -51,9 +51,28 @@ router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
     .then((post) => {
       res.json(post)
     })
-    // .catch(() => {
-    //   res.status(500).send('route error')
-    // })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
+router.update('/', checkJwt, multerUpload.single('file'), (req, res) => {
+  const post = req.body
+
+  if (!post.auth0_id) {
+    res.status(401).send('Unauthorized')
+    return
+  }
+
+  post.image = req.file.path.substring(29)
+
+  db.updatePost(post)
+    .then((ids) => {
+      return db.getPostById(ids[0])
+    })
+    .then((post) => {
+      res.json(post)
+    })
     .catch((err) => {
       res.status(500).send(err.message)
     })
