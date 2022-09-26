@@ -19,9 +19,10 @@ export function getPostById(id) {
     .catch((err) => console.error(err.message))
 }
 
-export function addPost(post) {
+export function addPost(post, token) {
   return request
     .post(`${rootURL}/posts`)
+    .set('Authorization', `Bearer ${token}`)
     .send(post)
     .then((res) => {
       return res.body

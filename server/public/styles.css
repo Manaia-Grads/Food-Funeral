@@ -612,6 +612,10 @@ video {
   width: 75%;
 }
 
+.max-w-sm {
+  max-width: 24rem;
+}
+
 .flex-auto {
   flex: 1 1 auto;
 }

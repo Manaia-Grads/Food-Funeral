@@ -1,30 +1,56 @@
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { addPost } from '../apis/posts'
 
 function AddPost() {
+  const { getAccessTokenSilently } = useAuth0()
   const navigate = useNavigate()
+
+
+  const { user, logout, loginWithRedirect, isLoading, isAuthenticated } =
+    useAuth0()
 
   const initialData = {
     title: '',
     date: '',
     content: '',
-    auth0_id: 'Guest',
+    auth0_id: user?.sub || '',
+    name: user?.name || '',
   }
   const [form, setForm] = useState(initialData)
 
   const handleChange = (evt) => {
-    setForm({
-      ...form,
-      [evt.target.name]: evt.target.value,
-    })
+
+    if (evt.target.name === 'file') {
+      setForm({ ...form, file: evt.target.files[0] })
+    } else {
+      evt.preventDefault()
+      setForm({
+        ...form,
+        [evt.target.name]: evt.target.value,
+      })
+    }
+
   }
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    addPost(form)
-      .then((post) => {
-        navigate(`/posts/${post.id}`)
+    const formData = new FormData()
+    formData.append('file', form.file)
+    formData.append('title', form.title)
+    formData.append('date', form.date)
+    formData.append('content', form.content)
+    formData.append('auth0_id', form.auth0_id)
+    formData.append('name', form.name)
+
+    getAccessTokenSilently()
+      .then((token) => {
+        return addPost(formData, token)
+      })
+      .then((newPostData) => {
+        setForm(initialData)
+        navigate(`/posts/${newPostData.id}`)
       })
       .catch((err) => console.error(err.message))
   }
@@ -40,8 +66,14 @@ function AddPost() {
           memorable send off.
         </p>
       </div>
-      <form className="content-center" onSubmit={handleSubmit}>
-        <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
+
+      <form
+        className="content-center"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+      >
+        <input type="hidden" id="auth0_id" name="auth0_id" value={user?.sub} />
+        <input type="hidden" id="name" name="name" value={user?.name} />
 
         <br />
 
@@ -77,6 +109,11 @@ function AddPost() {
 
         <br />
 
+        <label htmlFor="file">Upload Image</label>
+        <input onChange={handleChange} name="file" id="file" type="file" />
+
+        <br />
+
         <input
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
@@ -86,4 +123,4 @@ function AddPost() {
   )
 }
 
-export default AddPost
+export default withAuthenticationRequired(AddPost)

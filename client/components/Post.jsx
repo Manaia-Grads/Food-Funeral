@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-
 import { getPost } from '../actions/post.js'
 import AddComment from './AddComment.jsx'
 import Comments from './Comments.jsx'
@@ -25,11 +24,15 @@ export default function Post() {
       <div className="flex flex-col items-center justify-center">
         <h1>{post?.title}</h1>
         <div>
-          <img src={'/images/' + post?.img} alt={post?.title} />
+          <img
+            className="max-w-sm"
+            src={'/images/uploads/' + post?.img}
+            alt={post?.title}
+          />
         </div>
         <div>
           <p>{post?.date_eaten}</p>
-          <p>Posted By: {post?.auth0_id}</p>
+          <p>Posted By: {post?.name}</p>
         </div>
         <div>{post?.content}</div>
         <div>

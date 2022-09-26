@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-
 const postsRoute = require('./routes/posts')
 const commentsRoute = require('./routes/comments')
 
@@ -15,5 +14,4 @@ server.use('/api/v1/posts', commentsRoute)
 server.get('*', (req, res) => {
   res.sendFile(path.resolve('server/public/index.html'))
 })
-
 module.exports = server

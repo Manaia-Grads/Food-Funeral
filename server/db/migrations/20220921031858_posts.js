@@ -6,6 +6,7 @@ exports.up = function (knex) {
     table.varchar('content')
     table.string('img')
     table.string('auth0_id')
+    table.string('name')
     table.date('date_created')
   })
 }

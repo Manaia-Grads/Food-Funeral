@@ -4,6 +4,7 @@ exports.up = function (knex) {
     table.varchar('content')
     table.integer('post_id').references('posts.id')
     table.string('auth0_id')
+    table.string('name')
     table.date('date_created')
   })
 }
