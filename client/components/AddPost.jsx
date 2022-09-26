@@ -2,12 +2,14 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
 import { addNewPost, clearAddPost } from '../actions/addPost'
 
 function AddPost() {
   const { getAccessTokenSilently } = useAuth0()
   const navigate = useNavigate()
+  const { user, logout, loginWithRedirect, isLoading, isAuthenticated } =
+    useAuth0()
+
   const {
     data: newPost,
     loading,
@@ -19,7 +21,8 @@ function AddPost() {
     title: '',
     date: '',
     content: '',
-    auth0_id: 'Guest',
+    auth0_id: user?.sub || '',
+    name: user?.name || '',
   }
   const [form, setForm] = useState(initialData)
 
@@ -51,6 +54,10 @@ function AddPost() {
     setForm(initialData)
   }
 
+  // useEffect(() => {
+  //   console.log(user)
+  // }, [])
+
   return (
     <>
       <div>
@@ -63,7 +70,8 @@ function AddPost() {
         </p>
       </div>
       <form className="content-center" onSubmit={handleSubmit}>
-        <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
+        <input type="hidden" id="auth0_id" name="auth0_id" value={user?.sub} />
+        <input type="hidden" id="name" name="name" value={user?.name} />
 
         <br />
 

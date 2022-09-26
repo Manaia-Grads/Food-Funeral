@@ -31,7 +31,7 @@ function Posts() {
                     src={'/images/' + post.img}
                     alt="unfortunately there is no alt text available right now"
                   />
-                  <p className={'text-blue-400'}>Posted By: {post.auth0_id}</p>
+                  <p className={'text-blue-400'}>Posted By: {post.name}</p>
                 </div>
               </Link>
             ))}

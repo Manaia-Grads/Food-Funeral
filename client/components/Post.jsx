@@ -25,7 +25,7 @@ export default function Post() {
         </div>
         <div>
           <p>{post?.date_eaten}</p>
-          <p>Posted By: {post?.auth0_id}</p>
+          <p>Posted By: {post?.name}</p>
         </div>
         <div>{post?.content}</div>
       </div>
