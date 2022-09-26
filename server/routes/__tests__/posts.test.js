@@ -12,7 +12,6 @@ jest.mock('../../auth0')
 jest.spyOn(console, 'error')
 
 beforeEach(() => {
-  //-----auth
   const FAKE_USER_ID = 'auth0|123456789'
   checkJwt.mockImplementation((req, res, next) => {
     req.user = { sub: FAKE_USER_ID }
@@ -133,7 +132,6 @@ describe('POST /api/v1/posts', () => {
       .post('/api/v1/posts')
       .send(fakeData[0])
       .then((res) => {
-        console.log(res.text)
         expect(res.status).toBe(200)
         expect(res.body.id).toBe(newPostId)
         expect(res.body.title).toBe('I ate a banana')
@@ -147,18 +145,6 @@ describe('POST /api/v1/posts', () => {
       .then((res) => {
         expect(res.status).toBe(500)
         expect(console.error).toHaveBeenCalledWith(new Error('oh dear, sad'))
-        return null
-      })
-  })
-
-  it('returns status 401 and when user unathorized', () => {
-    addPost.mockImplementation(() => Promise.reject('Unauthorised'))
-
-    return request(server)
-      .get('/api/v1/posts')
-      .then((res) => {
-        expect(res.status).toBe(401)
-        expect(console.error).toHaveBeenCalledWith('Unauthorised')
         return null
       })
   })
