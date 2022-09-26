@@ -33,7 +33,6 @@ function AddPost() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-
     const formData = new FormData()
     formData.append('file', form.file)
     formData.append('title', form.title)

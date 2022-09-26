@@ -13,6 +13,15 @@ router.get('/:id', (req, res) => {
     .catch((err) => res.status(500).send(err.message))
 })
 
+router.delete('/:id', (req, res) => {
+  db.deletePostById(req.params.id)
+    .then(() => res.sendStatus(200))
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send({ message: 'Something went wrong' })
+    })
+})
+
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
@@ -42,9 +51,9 @@ router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
     .then((post) => {
       res.json(post)
     })
-    .catch(() => {
-      res.status(500).send('route error')
-    })
+    // .catch(() => {
+    //   res.status(500).send('route error')
+    // })
     .catch((err) => {
       res.status(500).send(err.message)
     })
