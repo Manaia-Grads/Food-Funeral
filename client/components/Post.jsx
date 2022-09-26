@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom'
 
 import { getPost } from '../actions/post.js'
 import AddComment from './AddComment.jsx'
+import Comments from './Comments.jsx'
 
 export default function Post() {
+  // comments from JV around removing redux from here
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
-  console.log(id)
 
   useEffect(() => {
     dispatch(getPost(id))
@@ -32,6 +33,7 @@ export default function Post() {
         </div>
         <div>{post?.content}</div>
         <div>
+          <Comments />
           <AddComment />
         </div>
       </div>

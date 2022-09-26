@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { addNewPost, clearAddPost } from '../actions/addPost'
+import { addPost } from '../apis/posts'
 
 function AddPost() {
   const navigate = useNavigate()
 
-  const {
-    data: newPost,
-    loading,
-    error,
-  } = useSelector((state) => state.addPost)
-
-  const dispatch = useDispatch()
   const initialData = {
     title: '',
     date: '',
@@ -29,18 +20,13 @@ function AddPost() {
     })
   }
 
-  useEffect(() => {
-    if (newPost?.id != undefined) {
-      navigate(`/posts/${newPost.id}`)
-      dispatch(clearAddPost())
-    }
-  }, [newPost])
-
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    setForm(form)
-    dispatch(addNewPost(form))
-    setForm(initialData)
+    addPost(form)
+      .then((post) => {
+        navigate(`/posts/${post.id}`)
+      })
+      .catch((err) => console.error(err.message))
   }
 
   return (

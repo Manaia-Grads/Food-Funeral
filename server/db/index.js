@@ -20,7 +20,14 @@ function addPost(post, db = connection) {
 }
 
 function getAllCommentsByPostId(id, db = connection) {
-  return db('comments').select().where('post_id', id)
+  return db('comments')
+    .select(
+      '*',
+      'post_id as postId',
+      'auth0_id as auth0Id',
+      'date_created as date'
+    )
+    .where('post_id', id)
 }
 
 function addComment(comment, postId, db = connection) {

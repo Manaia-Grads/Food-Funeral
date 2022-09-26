@@ -8,14 +8,14 @@ exports.seed = function (knex) {
           content: 'yum!!',
           post_id: '1',
           auth0_id: 'Guest',
-          date_created: '2022-09-22',
+          date_created: '1664228794421',
         },
         {
           id: 2,
           content: 'a cow, really??',
           post_id: '1',
           auth0_id: 'Guest',
-          date_created: '2022-09-22',
+          date_created: '1554228794421',
         },
       ])
     })

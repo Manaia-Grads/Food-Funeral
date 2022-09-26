@@ -37,32 +37,4 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/:id/comments', (req, res) => {
-  const { id: postId } = req.params
-  db.getAllCommentsByPostId(postId)
-    .then((comments) => {
-      res.json(comments)
-      return null
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).json({ message: 'Something went wrong' })
-    })
-})
-
-router.post('/:id/comments', (req, res) => {
-  const comment = req.body
-  const { id: postId } = req.params
-  db.addComment(comment, postId)
-    .then((ids) => {
-      return db.getCommentById(ids[0])
-    })
-    .then((comment) => {
-      res.json(comment)
-    })
-    .catch((err) => {
-      res.status(500).send(err.message)
-    })
-})
-
 module.exports = router
