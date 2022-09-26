@@ -28,7 +28,7 @@ function Posts() {
                   <h3 className={'text-3xl font-mono'}>{post.title}</h3>
                   <img
                     className={'w-3/4'}
-                    src={'/images/' + post.img}
+                    src={'/images/uploads/' + post.img}
                     alt="unfortunately there is no alt text available right now"
                   />
                   <p className={'text-blue-400'}>Posted By: {post.auth0_id}</p>

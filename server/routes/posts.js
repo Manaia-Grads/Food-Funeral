@@ -2,6 +2,7 @@ const express = require('express')
 
 const db = require('../db/index')
 
+const { multerUpload } = require('../../middleware/multer')
 const router = express.Router()
 
 router.get('/:id', (req, res) => {
@@ -14,7 +15,6 @@ router.get('/:id', (req, res) => {
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
-      //console.log(posts)
       res.json(posts)
       return null
     })
@@ -24,14 +24,19 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/', multerUpload.single('file'), (req, res) => {
   const post = req.body
+  post.image = req.file.path.substring(29)
+
   db.addPost(post)
     .then((ids) => {
       return db.getPostById(ids[0])
     })
     .then((post) => {
       res.json(post)
+    })
+    .catch(() => {
+      res.status(500).send('route error')
     })
     .catch((err) => {
       res.status(500).send(err.message)

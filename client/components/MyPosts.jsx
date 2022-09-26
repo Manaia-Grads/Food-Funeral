@@ -1,20 +1,22 @@
-import React, { useEffect } from 'react'
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
+// TO REMOVE? :
 
-function MyPosts() {
-  const { getAccessTokenSilently } = useAuth0()
+// import React, { useEffect } from 'react'
+// import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 
-  useEffect(() => {
-    getAccessTokenSilently()
-      .then((token) => {
-        return fetchMyPosts(token)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
-  }, [])
+// function MyPosts() {
+//   const { getAccessTokenSilently } = useAuth0()
 
-  return <ul></ul>
-}
+//   useEffect(() => {
+//     getAccessTokenSilently()
+//       .then((token) => {
+//         return fetchMyPosts(token)
+//       })
+//       .catch((err) => {
+//         console.log(err.message)
+//       })
+//   }, [])
 
-export default withAuthenticationRequired(MyPosts)
+//   return <ul></ul>
+// }
+
+// export default withAuthenticationRequired(MyPosts)

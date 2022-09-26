@@ -1,46 +1,44 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { addNewPost, clearAddPost } from '../actions/addPost'
+import { addPost } from '../apis/posts'
 
 function AddPost() {
   const navigate = useNavigate()
-
-  const {
-    data: newPost,
-    loading,
-    error,
-  } = useSelector((state) => state.addPost)
-
-  const dispatch = useDispatch()
   const initialData = {
     title: '',
     date: '',
     content: '',
+    file: '',
     auth0_id: 'Guest',
   }
   const [form, setForm] = useState(initialData)
 
   const handleChange = (evt) => {
-    setForm({
-      ...form,
-      [evt.target.name]: evt.target.value,
-    })
-  }
-
-  useEffect(() => {
-    if (newPost?.id != undefined) {
-      navigate(`/posts/${newPost.id}`)
-      dispatch(clearAddPost())
+    if (evt.target.name === 'file') {
+      setForm({ ...form, file: evt.target.files[0] })
+    } else {
+      evt.preventDefault()
+      setForm({
+        ...form,
+        [evt.target.name]: evt.target.value,
+      })
     }
-  }, [newPost])
+  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-    setForm(form)
-    dispatch(addNewPost(form))
-    setForm(initialData)
+    const formData = new FormData()
+    formData.append('file', form.file)
+    formData.append('title', form.title)
+    formData.append('date', form.date)
+    formData.append('content', form.content)
+    formData.append('auth0_id', form.auth0_id)
+    addPost(formData)
+      .then((newPostData) => {
+        setForm(initialData)
+        navigate(`/posts/${newPostData.id}`)
+      })
+      .catch((err) => console.error(err.message))
   }
 
   return (
@@ -54,7 +52,11 @@ function AddPost() {
           memorable send off.
         </p>
       </div>
-      <form className="content-center" onSubmit={handleSubmit}>
+      <form
+        className="content-center"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+      >
         <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
 
         <br />
@@ -88,6 +90,11 @@ function AddPost() {
           name="content"
           id="content"
         />
+
+        <br />
+
+        <label htmlFor="file">Upload Image</label>
+        <input onChange={handleChange} name="file" id="file" type="file" />
 
         <br />
 
