@@ -4,21 +4,35 @@ const server = require('../../server')
 const { getAllPosts, getPostById, addPost } = require('../../db/index.js')
 
 //----auth
-import { checkJwt } from '../../auth0'
+import checkJwt from '../../auth0'
 
 jest.mock('../../db/index.js')
+jest.mock('../../auth0')
 
 jest.spyOn(console, 'error')
 
-afterEach(() => {
-  console.error.mockReset()
+beforeEach(() => {
+  //-----auth
+  const FAKE_USER_ID = 'auth0|123456789'
+  checkJwt.mockImplementation((req, res, next) => {
+    req.user = { sub: FAKE_USER_ID }
+    return next()
+  })
 })
 
-//-----auth
-const FAKE_USER_ID = 'auth0|123456789'
-checkJwt.mockImplementation((req, res, next) => {
-  req.user = { sub: FAKE_USER_ID }
-  return next()
+const fakeSingle = (req, res, next) => {
+  req.file = { path: '1234567890123/some/path' }
+  next()
+}
+
+jest.mock('../../../middleware/multer', () => ({
+  multerUpload: {
+    single: jest.fn().mockReturnValue(fakeSingle),
+  },
+}))
+
+afterEach(() => {
+  console.error.mockReset()
 })
 
 const fakeData = [
@@ -115,17 +129,15 @@ describe('POST /api/v1/posts', () => {
     getPostById.mockReturnValue(
       Promise.resolve({ ...fakeData[0], id: newPostId })
     )
-    return (
-      request(server)
-        .post('/api/v1/posts')
-        //.set('Authorization', 'Bearer imafaketoken')
-        .send(fakeData[0])
-        .then((res) => {
-          expect(res.status).toBe(200)
-          expect(res.body.id).toBe(newPostId)
-          expect(res.body.title).toBe('I ate a banana')
-        })
-    )
+    return request(server)
+      .post('/api/v1/posts')
+      .send(fakeData[0])
+      .then((res) => {
+        console.log(res.text)
+        expect(res.status).toBe(200)
+        expect(res.body.id).toBe(newPostId)
+        expect(res.body.title).toBe('I ate a banana')
+      })
   })
   it('returns status 500 and an error message when db function rejects', () => {
     addPost.mockImplementation(() => Promise.reject(new Error('oh dear, sad')))
@@ -135,6 +147,18 @@ describe('POST /api/v1/posts', () => {
       .then((res) => {
         expect(res.status).toBe(500)
         expect(console.error).toHaveBeenCalledWith(new Error('oh dear, sad'))
+        return null
+      })
+  })
+
+  it('returns status 401 and when user unathorized', () => {
+    addPost.mockImplementation(() => Promise.reject('Unauthorised'))
+
+    return request(server)
+      .get('/api/v1/posts')
+      .then((res) => {
+        expect(res.status).toBe(401)
+        expect(console.error).toHaveBeenCalledWith('Unauthorised')
         return null
       })
   })

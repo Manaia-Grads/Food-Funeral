@@ -42,9 +42,9 @@ router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
     .then((post) => {
       res.json(post)
     })
-    .catch(() => {
-      res.status(500).send('route error')
-    })
+    // .catch(() => {
+    //   res.status(500).send('route error')
+    // })
     .catch((err) => {
       res.status(500).send(err.message)
     })
