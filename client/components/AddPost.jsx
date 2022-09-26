@@ -1,15 +1,21 @@
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { addPost } from '../apis/posts'
 
 function AddPost() {
+  const { getAccessTokenSilently } = useAuth0()
   const navigate = useNavigate()
+
+  const { user, logout, loginWithRedirect, isLoading, isAuthenticated } =
+    useAuth0()
+
   const initialData = {
     title: '',
     date: '',
     content: '',
-    file: '',
-    auth0_id: 'Guest',
+    auth0_id: user?.sub || '',
+    name: user?.name || '',
   }
   const [form, setForm] = useState(initialData)
 
@@ -27,13 +33,19 @@ function AddPost() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
+
     const formData = new FormData()
     formData.append('file', form.file)
     formData.append('title', form.title)
     formData.append('date', form.date)
     formData.append('content', form.content)
     formData.append('auth0_id', form.auth0_id)
-    addPost(formData)
+    formData.append('name', form.name)
+
+    getAccessTokenSilently()
+      .then((token) => {
+        return addPost(formData, token)
+      })
       .then((newPostData) => {
         setForm(initialData)
         navigate(`/posts/${newPostData.id}`)
@@ -52,12 +64,14 @@ function AddPost() {
           memorable send off.
         </p>
       </div>
+
       <form
         className="content-center"
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
-        <input type="hidden" id="auth0_id" name="auth0_id" value="Guest" />
+        <input type="hidden" id="auth0_id" name="auth0_id" value={user?.sub} />
+        <input type="hidden" id="name" name="name" value={user?.name} />
 
         <br />
 
@@ -107,4 +121,4 @@ function AddPost() {
   )
 }
 
-export default AddPost
+export default withAuthenticationRequired(AddPost)

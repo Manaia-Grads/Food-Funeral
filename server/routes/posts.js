@@ -1,5 +1,6 @@
 const express = require('express')
 
+const checkJwt = require('../auth0.js')
 const db = require('../db/index')
 
 const { multerUpload } = require('../../middleware/multer')
@@ -24,8 +25,14 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', multerUpload.single('file'), (req, res) => {
+router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
   const post = req.body
+
+  if (!post.auth0_id) {
+    res.status(401).send('Unauthorized')
+    return
+  }
+
   post.image = req.file.path.substring(29)
 
   db.addPost(post)

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-
 import { getPost } from '../actions/post.js'
 
 export default function Post() {
@@ -30,7 +29,7 @@ export default function Post() {
         </div>
         <div>
           <p>{post?.date_eaten}</p>
-          <p>Posted By: {post?.auth0_id}</p>
+          <p>Posted By: {post?.name}</p>
         </div>
         <div>{post?.content}</div>
       </div>
