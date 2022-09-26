@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-//import { useAuth0 } from '@auth0/auth0-react'
-
 import { getPost } from '../actions/post.js'
-///const { user } = useAuth0()
 
 export default function Post() {
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
-  //console.log(id)
 
   useEffect(() => {
     dispatch(getPost(id))

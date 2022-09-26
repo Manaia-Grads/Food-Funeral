@@ -4,6 +4,7 @@ const checkJwt = require('../auth0.js')
 const db = require('../db/index')
 
 const router = express.Router()
+const getAuthDetails = require('./authUsers')
 
 router.get('/:id', (req, res) => {
   const { id } = req.params
@@ -15,6 +16,27 @@ router.get('/:id', (req, res) => {
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
+      // console.log(posts)
+      //for each post in res.body
+      posts.map((post) => {
+        console.log(post.auth0_id)
+        getAuthDetails(post.auth0_id)
+          .then((result) => console.log(result))
+          .catch((err) => {
+            console.error(err)
+            res.status(500).json({ message: 'Something went wrong' })
+          })
+      })
+
+      // arrayBlogs.map((blog) => {
+
+      //   blog.auth0_id
+      //send quesry to get the authID and query auth0 for details
+
+      //get the authID and query auth0 for details
+
+      //attach it to the res.body
+
       res.json(posts)
       return null
     })
