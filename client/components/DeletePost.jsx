@@ -3,24 +3,21 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { deletePostDataById } from '../apis/posts'
 
-function DeletePost({id,auth0_id}) {
-
+function DeletePost({ id, auth0_id }) {
   const navigate = useNavigate()
 
-  const { user} = useAuth0()
+  const { user } = useAuth0()
 
-  const handleDelete=(e)=>{
+  const handleDelete = (e) => {
     e.preventDefault()
     deletePostDataById(id)
-      .then(()=> navigate('/'))
-      .catch((err)=> console.log(err.message))
+      .then(() => navigate('/'))
+      .catch((err) => console.log(err.message))
   }
-
 
   return (
     <>
-      {auth0_id == user?.sub &&
-      <button onClick={handleDelete}> Delete</button>}
+      {auth0_id == user?.sub && <button onClick={handleDelete}> Delete</button>}
     </>
   )
 }

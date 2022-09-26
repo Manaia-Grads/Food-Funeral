@@ -30,9 +30,8 @@ export function addPost(post, token) {
     .catch((err) => console.error(err.message))
 }
 
-export function deletePostDataById(id){
-  return request.delete(rootURL+'/posts/'+id)
-    .then((res)=>{
+export function deletePostDataById(id) {
+  return request.delete(rootURL + '/posts/' + id).then((res) => {
     console.log(res.status)
     return res.body
   })

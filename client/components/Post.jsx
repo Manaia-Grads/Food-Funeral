@@ -8,11 +8,10 @@ export default function Post() {
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
-  console.log('post',post)
+  console.log('post', post)
   useEffect(() => {
     dispatch(getPost(id))
   }, [])
-
 
   return loading ? (
     'loading'
@@ -34,7 +33,7 @@ export default function Post() {
           <p>Posted By: {post?.name}</p>
         </div>
         <div>{post?.content}</div>
-        <DeletePost id={id} auth0_id={post.auth0_id}/>
+        <DeletePost id={id} auth0_id={post.auth0_id} />
       </div>
     </>
   )
