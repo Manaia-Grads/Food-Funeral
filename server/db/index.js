@@ -20,7 +20,6 @@ function addPost(post, db = connection) {
   })
 }
 
-
 function deletePostById(postId, db = connection) {
   return db('posts').where('id', postId).del()
 }

@@ -43,7 +43,6 @@ export default function Post() {
           <Comments />
           <AddComment />
         </div>
-
       </div>
     </>
   )
