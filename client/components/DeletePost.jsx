@@ -1,4 +1,4 @@
-import { useAuth0} from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { deletePostDataById } from '../apis/posts'
@@ -21,5 +21,3 @@ export default function DeletePost({ id, auth0_id }) {
     </>
   )
 }
-
-
