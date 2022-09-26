@@ -7,11 +7,11 @@ import AddComment from './AddComment.jsx'
 import Comments from './Comments.jsx'
 
 export default function Post() {
-  // comments from JV around removing redux from here
+  
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
-  console.log('post', post)
+
   useEffect(() => {
     dispatch(getPost(id))
   }, [])
