@@ -3,12 +3,22 @@ const server = require('../../server')
 
 const { getAllPosts, getPostById, addPost } = require('../../db/index.js')
 
+//----auth
+import { checkJwt } from '../../auth0'
+
 jest.mock('../../db/index.js')
 
 jest.spyOn(console, 'error')
 
 afterEach(() => {
   console.error.mockReset()
+})
+
+//-----auth
+const FAKE_USER_ID = 'auth0|123456789'
+checkJwt.mockImplementation((req, res, next) => {
+  req.user = { sub: FAKE_USER_ID }
+  return next()
 })
 
 const fakeData = [
@@ -18,7 +28,8 @@ const fakeData = [
     date: '2022-09-22',
     content: 'this is a very long string that can be changed later',
     image: 'www.googleimages.com/bears',
-    auth0_id: 1,
+    auth0_id: 'auth0|12345',
+    name: 'John Foo',
     date_created: '2022-09-22',
   },
   {
@@ -27,7 +38,8 @@ const fakeData = [
     date: '2022-09-20',
     content: 'this is a very long string that can be changed later',
     image: 'www.googleimages.com/banana',
-    auth0_id: 2,
+    auth0_id: 'auth0|12345',
+    name: 'Gazza',
     date_created: '2022-09-21',
   },
   {
@@ -36,7 +48,8 @@ const fakeData = [
     date: '2022-09-19',
     content: 'this is a very long string that can be changed later',
     image: 'www.googleimages.com/poodle',
-    auth0_id: 3,
+    auth0_id: 'auth0|12346',
+    name: 'John is Potato',
     date_created: '2022-09-20',
   },
 ]
@@ -94,6 +107,7 @@ describe('GET /api/v1/posts', () => {
   })
 })
 
+//----------needs auth
 describe('POST /api/v1/posts', () => {
   it('returns status 200 and the post data object when db function resolves', () => {
     const newPostId = 26
@@ -101,14 +115,17 @@ describe('POST /api/v1/posts', () => {
     getPostById.mockReturnValue(
       Promise.resolve({ ...fakeData[0], id: newPostId })
     )
-    return request(server)
-      .post('/api/v1/posts')
-      .send(fakeData[0])
-      .then((res) => {
-        expect(res.status).toBe(200)
-        expect(res.body.id).toBe(newPostId)
-        expect(res.body.title).toBe('I ate a banana')
-      })
+    return (
+      request(server)
+        .post('/api/v1/posts')
+        //.set('Authorization', 'Bearer imafaketoken')
+        .send(fakeData[0])
+        .then((res) => {
+          expect(res.status).toBe(200)
+          expect(res.body.id).toBe(newPostId)
+          expect(res.body.title).toBe('I ate a banana')
+        })
+    )
   })
   it('returns status 500 and an error message when db function rejects', () => {
     addPost.mockImplementation(() => Promise.reject(new Error('oh dear, sad')))
