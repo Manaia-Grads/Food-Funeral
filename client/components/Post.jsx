@@ -21,7 +21,11 @@ export default function Post() {
       <div className="flex flex-col items-center justify-center">
         <h1>{post?.title}</h1>
         <div>
-          <img src={'/images/' + post?.img} alt={post?.title} />
+          <img
+            className="max-w-sm"
+            src={'/images/uploads/' + post?.img}
+            alt={post?.title}
+          />
         </div>
         <div>
           <p>{post?.date_eaten}</p>

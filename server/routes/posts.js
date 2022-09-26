@@ -3,6 +3,7 @@ const express = require('express')
 const checkJwt = require('../auth0.js')
 const db = require('../db/index')
 
+const { multerUpload } = require('../../middleware/multer')
 const router = express.Router()
 //const getAuthDetails = require('./authUsers')
 
@@ -16,7 +17,6 @@ router.get('/:id', (req, res) => {
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
-      //console.log(posts)
       res.json(posts)
       return null
     })
@@ -26,24 +26,25 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', checkJwt, (req, res) => {
-  const auth0_id = req.auth?.sub
+router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
+  const post = req.body
 
-  if (!auth0_id) {
+  if (!post.auth0_id) {
     res.status(401).send('Unauthorized')
     return
   }
-  const newPostData = {
-    ...req.body,
-    auth0_id,
-  }
 
-  db.addPost(newPostData)
+  post.image = req.file.path.substring(29)
+
+  db.addPost(post)
     .then((ids) => {
       return db.getPostById(ids[0])
     })
     .then((post) => {
       res.json(post)
+    })
+    .catch(() => {
+      res.status(500).send('route error')
     })
     .catch((err) => {
       res.status(500).send(err.message)
