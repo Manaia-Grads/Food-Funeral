@@ -22,9 +22,9 @@ export const clearAddPost = () => ({
   type: CLEAR_ADD_POST,
 })
 
-export const addNewPost = (post) => (dispatch) => {
+export const addNewPost = (post, token) => (dispatch) => {
   dispatch(addPostRequest())
-  return addPost(post)
+  return addPost(post, token)
     .then((post) => {
       dispatch(addPostSuccess(post))
     })

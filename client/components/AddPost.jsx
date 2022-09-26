@@ -1,3 +1,4 @@
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -5,8 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { addNewPost, clearAddPost } from '../actions/addPost'
 
 function AddPost() {
+  const { getAccessTokenSilently } = useAuth0()
   const navigate = useNavigate()
-
   const {
     data: newPost,
     loading,
@@ -39,7 +40,14 @@ function AddPost() {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     setForm(form)
-    dispatch(addNewPost(form))
+    getAccessTokenSilently()
+      .then((token) => {
+        dispatch(addNewPost(form, token))
+        // return addNewPost(token)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
     setForm(initialData)
   }
 
@@ -100,4 +108,4 @@ function AddPost() {
   )
 }
 
-export default AddPost
+export default withAuthenticationRequired(AddPost)

@@ -1,5 +1,6 @@
 const express = require('express')
 
+const checkJwt = require('../auth0.js')
 const db = require('../db/index')
 
 const router = express.Router()
@@ -14,7 +15,6 @@ router.get('/:id', (req, res) => {
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
-      //console.log(posts)
       res.json(posts)
       return null
     })
@@ -24,9 +24,19 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
-  const post = req.body
-  db.addPost(post)
+router.post('/', checkJwt, (req, res) => {
+  const auth0_id = req.auth?.sub
+
+  if (!auth0_id) {
+    res.status(401).send('Unauthorized')
+    return
+  }
+  const newPostData = {
+    ...req.body,
+    auth0_id,
+  }
+
+  db.addPost(newPostData)
     .then((ids) => {
       return db.getPostById(ids[0])
     })

@@ -3,9 +3,8 @@
   "version": "2.0.0",
   "main": "server/index.js",
   "license": "MIT",
-  "authors": "Ling, Hamish, Bleu and Grant",
   "keywords": [
-    "fullstack", 
+    "fullstack",
     "blog",
     "dark humour",
     "final-project"
@@ -47,6 +46,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.11.0",
     "@vscode/sqlite3": "^5.0.7",
+    "dotenv": "^16.0.2",
     "express": "^4.17.1",
     "express-jwt": "^7.7.5",
     "express-jwt-authz": "^2.4.1",
