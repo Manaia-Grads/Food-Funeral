@@ -10,7 +10,8 @@ function AddComment() {
   const initialData = {
     content: '',
     postId: '',
-    auth0Id: 'Guest',
+    auth0Id: '',
+    name: 'Guest',
   }
   const [form, setForm] = useState(initialData)
 

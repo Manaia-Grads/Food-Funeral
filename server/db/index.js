@@ -49,6 +49,7 @@ function addComment(comment, postId, db = connection) {
     content: comment.content,
     post_id: postId,
     auth0_id: comment.auth0Id,
+    name: comment.name,
     date_created: Date.now(),
   })
 }

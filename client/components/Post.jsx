@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getPost } from '../actions/post.js'
 import { UpdatePost } from './UpdatePost.jsx'
-import DeletePost from './DeletePost.jsx'
+import { DeletePost } from './DeletePost.jsx'
 import AddComment from './AddComment.jsx'
 import Comments from './Comments.jsx'
 

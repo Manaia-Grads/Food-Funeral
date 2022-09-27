@@ -28,10 +28,11 @@ function Comments() {
   return (
     <div>
       {comments.map((comment) => {
+        console.log(comment)
         return (
           <div key={comment.id}>
             <p>{comment.content}</p>
-            <p>By {comment.auth0Id}</p>
+            <p>By {comment.name ? comment.name : 'Anonymous Mourner'}</p>
             <p>At {getDate(comment.date)}</p>
           </div>
         )

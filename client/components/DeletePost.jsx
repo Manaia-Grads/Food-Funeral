@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { deletePostDataById } from '../apis/posts'
 
-export default function DeletePost({ id, auth0_id }) {
+export function DeletePost({ id, auth0_id }) {
   const navigate = useNavigate()
 
   const { user } = useAuth0()
