@@ -38,7 +38,7 @@ export default function Post() {
         <div>{post?.content}</div>
         <div>
           <UpdatePost postData={post} id={id} />
-          <DeletePost id={id} auth0_id={post.auth0_id} />
+          <DeletePost id={id} auth0_id={post?.auth0_id} />
         </div>
         <div>
           <Comments />
