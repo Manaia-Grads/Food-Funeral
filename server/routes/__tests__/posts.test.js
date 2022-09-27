@@ -3,9 +3,32 @@ const server = require('../../server')
 
 const { getAllPosts, getPostById, addPost } = require('../../db/index.js')
 
+//----auth
+import checkJwt from '../../auth0'
+
 jest.mock('../../db/index.js')
+jest.mock('../../auth0')
 
 jest.spyOn(console, 'error')
+
+beforeEach(() => {
+  const FAKE_USER_ID = 'auth0|123456789'
+  checkJwt.mockImplementation((req, res, next) => {
+    req.user = { sub: FAKE_USER_ID }
+    return next()
+  })
+})
+
+const fakeSingle = (req, res, next) => {
+  req.file = { path: '1234567890123/some/path' }
+  next()
+}
+
+jest.mock('../../../middleware/multer', () => ({
+  multerUpload: {
+    single: jest.fn().mockReturnValue(fakeSingle),
+  },
+}))
 
 afterEach(() => {
   console.error.mockReset()
@@ -18,7 +41,8 @@ const fakeData = [
     date: '2022-09-22',
     content: 'this is a very long string that can be changed later',
     image: 'www.googleimages.com/bears',
-    auth0_id: 1,
+    auth0_id: 'auth0|12345',
+    name: 'John Foo',
     date_created: '2022-09-22',
   },
   {
@@ -27,7 +51,8 @@ const fakeData = [
     date: '2022-09-20',
     content: 'this is a very long string that can be changed later',
     image: 'www.googleimages.com/banana',
-    auth0_id: 2,
+    auth0_id: 'auth0|12345',
+    name: 'Gazza',
     date_created: '2022-09-21',
   },
   {
@@ -36,7 +61,8 @@ const fakeData = [
     date: '2022-09-19',
     content: 'this is a very long string that can be changed later',
     image: 'www.googleimages.com/poodle',
-    auth0_id: 3,
+    auth0_id: 'auth0|12346',
+    name: 'John is Potato',
     date_created: '2022-09-20',
   },
 ]
@@ -110,14 +136,31 @@ describe('POST /api/v1/posts', () => {
         expect(res.body.title).toBe('I ate a banana')
       })
   })
+
   it('returns status 500 and an error message when db function rejects', () => {
     addPost.mockImplementation(() => Promise.reject(new Error('oh dear, sad')))
 
     return request(server)
-      .get('/api/v1/posts')
+      .post('/api/v1/posts')
+      .send(fakeData[0])
       .then((res) => {
         expect(res.status).toBe(500)
-        expect(console.error).toHaveBeenCalledWith(new Error('oh dear, sad'))
+        expect(res.text).toBe('oh dear, sad')
+        return null
+      })
+  })
+
+  it('Send unauthorised user to route and returns status 401 - unauthorized', () => {
+    checkJwt.mockImplementation((req, res, next) => {
+      req.user = { sub: '' }
+      return next()
+    })
+
+    return request(server)
+      .post('/api/v1/posts')
+      .then((res) => {
+        expect(res.status).toBe(401)
+        expect(res.text).toBe('Unauthorized')
         return null
       })
   })

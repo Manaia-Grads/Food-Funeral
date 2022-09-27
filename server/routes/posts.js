@@ -22,6 +22,23 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.post('/:id', multerUpload.single('file'), (req, res) => {
+  const post = req.body
+
+  post.image = req.file.path.substring(29)
+
+  db.updatePost(post, req.params.id)
+    .then((ids) => {
+      return db.getPostById(ids)
+    })
+    .then((post) => {
+      res.json(post)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
@@ -36,8 +53,9 @@ router.get('/', (req, res) => {
 
 router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
   const post = req.body
+  const authorId = req.auth?.sub
 
-  if (!post.auth0_id) {
+  if (!authorId) {
     res.status(401).send('Unauthorized')
     return
   }
@@ -50,9 +68,6 @@ router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
     })
     .then((post) => {
       res.json(post)
-    })
-    .catch(() => {
-      res.status(500).send('route error')
     })
     .catch((err) => {
       res.status(500).send(err.message)

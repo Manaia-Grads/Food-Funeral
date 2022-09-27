@@ -35,3 +35,12 @@ export function deletePostDataById(id) {
     return res.body
   })
 }
+
+export function updatePost(post, id) {
+  return request
+    .post(`${rootURL}/posts/${id}`)
+    .send(post)
+    .then((res) => {
+      return res.body
+    })
+}

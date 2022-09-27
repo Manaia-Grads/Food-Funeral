@@ -43,7 +43,10 @@ export default function Navbar() {
 
               {isAuthenticated ? (
                 <>
-                  <li className="absolute right-52 mt-2 md:text-white">
+                  <li
+                    data-testid="username"
+                    className="absolute right-52 mt-2 md:text-white"
+                  >
                     {user?.name} {' ' + 'AKA ' + user?.nickname}
                   </li>
 
@@ -57,13 +60,17 @@ export default function Navbar() {
 
                   <li className="absolute right-5 block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-red-700 hover:text-white md:border-2 md:border-purple-900 md:bg-purple-900 md:p-2 md:text-white md:hover:text-white">
                     <div>
-                      <button onClick={handleLogOff}>Log Off</button>
+                      <button data-testid="logoff" onClick={handleLogOff}>
+                        Log Off
+                      </button>
                     </div>
                   </li>
                 </>
               ) : (
                 <li className="absolute right-5 block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-green-700 hover:text-white  md:border-2 md:border-purple-900 md:bg-purple-900 md:p-2 md:text-white md:hover:text-white">
-                  <button onClick={handleSignIn}>Sign In</button>
+                  <button data-testid="signin" onClick={handleSignIn}>
+                    Sign In
+                  </button>
                 </li>
               )}
             </ul>
