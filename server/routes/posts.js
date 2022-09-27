@@ -53,8 +53,9 @@ router.get('/', (req, res) => {
 
 router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
   const post = req.body
+  const authorId = req.auth?.sub
 
-  if (!post.auth0_id) {
+  if (!authorId) {
     res.status(401).send('Unauthorized')
     return
   }
