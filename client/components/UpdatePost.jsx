@@ -8,9 +8,9 @@ export function UpdatePost({ postData, id }) {
   const { user } = useAuth0()
 
   const initialData = {
-    title: postData.title,
-    date: postData.date_eaten,
-    content: postData.content,
+    title: postData?.title,
+    date: postData?.date_eaten,
+    content: postData?.content,
   }
   const [form, setForm] = useState(initialData)
   const [update, setUpdate] = useState({ updateStatus: false })
@@ -49,7 +49,7 @@ export function UpdatePost({ postData, id }) {
 
   return (
     <>
-      {postData.auth0_id == user?.sub && (
+      {postData?.auth0_id == user?.sub && (
         <button
           onClick={updateClickHandler}
           className="block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-green-700 hover:text-white  md:border-2 md:border-purple-900 md:bg-purple-900 md:p-2 md:text-white md:hover:text-white"
