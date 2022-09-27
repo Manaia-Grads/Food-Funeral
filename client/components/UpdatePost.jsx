@@ -1,4 +1,3 @@
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updatePost } from '../apis/posts'
@@ -6,7 +5,6 @@ import { updatePost } from '../apis/posts'
 export function UpdatePost({ postData, id }) {
   const navigate = useNavigate()
 
-  const { user } = useAuth0()
   const initialData = {
     title: postData.title,
     date: postData.date_eaten,
@@ -99,5 +97,3 @@ export function UpdatePost({ postData, id }) {
     </>
   )
 }
-
-export default withAuthenticationRequired(UpdatePost)
