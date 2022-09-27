@@ -48,7 +48,7 @@ function addComment(comment, postId, db = connection) {
   return db('comments').insert({
     content: comment.content,
     post_id: postId,
-    auth0_id: comment.auth0Id,
+    auth0_id: comment.auth0_id,
     name: comment.name,
     date_created: Date.now(),
   })

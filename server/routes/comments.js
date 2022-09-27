@@ -31,6 +31,7 @@ router.get('/:id/comments', (req, res) => {
 router.post('/:id/comments', (req, res) => {
   const commentContent = req.body
   const { id: postId } = req.params
+
   db.addComment(commentContent, postId)
     .then((ids) => {
       return db.getCommentById(ids[0])
@@ -40,6 +41,7 @@ router.post('/:id/comments', (req, res) => {
         id: comment.id,
         content: comment.content,
         auth0Id: comment.auth0_id,
+        name: comment.name,
         postId: comment.post_id,
         date: comment.date_created,
       })
