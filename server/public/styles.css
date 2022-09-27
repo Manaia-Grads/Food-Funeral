@@ -841,6 +841,11 @@ video {
     border-color: rgb(88 28 135 / var(--tw-border-opacity));
   }
 
+  .md\:border-red-900 {
+    --tw-border-opacity: 1;
+    border-color: rgb(127 29 29 / var(--tw-border-opacity));
+  }
+
   .md\:bg-transparent {
     background-color: transparent;
   }
@@ -848,6 +853,11 @@ video {
   .md\:bg-purple-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(88 28 135 / var(--tw-bg-opacity));
+  }
+
+  .md\:bg-red-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(127 29 29 / var(--tw-bg-opacity));
   }
 
   .md\:p-2 {
