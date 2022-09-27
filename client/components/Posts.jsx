@@ -17,21 +17,23 @@ function Posts() {
             <img
               className={'place-self-center'}
               src={'/images/loading.gif'}
-              alt="different food type spinning"
+              alt="different food types spinning"
             />
           </div>
         ) : (
-          <div className="inline-grid grid-cols-3 grid-rows-1 gap-2">
+          <div className="inline-grid grid-cols-3 grid-rows-1 gap-5">
             {data?.map((post) => (
               <Link key={post.id} to={`/posts/${post.id}`}>
-                <div className={'flex-auto'}>
-                  <h3 className={'text-3xl font-mono'}>{post.title}</h3>
+                <div className="w-3/4 min-h-fit flex-auto border-4 border-black rounded-t-full bg-custom-grey">
+                  <h3 className="mt-20 pt-8 text-3xl font-mono text-center">
+                    {post.title}
+                  </h3>
                   <img
-                    className={'w-3/4'}
+                    className="p-12 justify-center"
                     src={'/images/uploads/' + post.img}
                     alt="unfortunately there is no alt text available right now"
                   />
-                  <p className={'text-blue-400'}>Posted By: {post.name}</p>
+                  <p className="text-center mb-2">By {post.name}</p>
                 </div>
               </Link>
             ))}

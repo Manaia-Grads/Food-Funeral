@@ -104,17 +104,16 @@ describe('errors are returned correctly', () => {
     })
   })
 
-  it.todo('returns an error on delet PostDataById')
-  // it.todo('returns an error on delet PostDataById', async () => {
-  //   expect.assertions(2)
-  //   const scope = nock(rootURL)
-  //     .delete('/api/v1/posts/4')
-  //     .replyWithError(errMessage)
-  //   return deletePostDataById(4).then(() => {
-  //     expect(scope.isDone()).toBeTruthy()
-  //     expect(console.error).toHaveBeenCalledWith(errMessage)
-  //   })
-  // })
+  it('returns an error on delete PostDataById', async () => {
+    expect.assertions(2)
+    const scope = nock(rootURL)
+      .delete('/api/v1/posts/4')
+      .replyWithError(errMessage)
+    return deletePostDataById(4).then(() => {
+      expect(scope.isDone()).toBeTruthy()
+      expect(console.error).toHaveBeenCalledWith(errMessage)
+    })
+  })
 })
 
 describe('DELETE /api/v1/posts/:id', () => {
