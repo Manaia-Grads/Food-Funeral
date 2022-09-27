@@ -17,8 +17,7 @@ router.delete('/:id', (req, res) => {
   db.deletePostById(req.params.id)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      console.log(err)
-      res.status(500).send({ message: 'Something went wrong' })
+      res.status(500).send(err.message)
     })
 })
 

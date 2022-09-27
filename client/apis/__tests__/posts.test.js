@@ -1,5 +1,5 @@
 import nock from 'nock'
-import { getPosts, getPostById, addPost } from '../posts'
+import { getPosts, getPostById, addPost, deletePostDataById } from '../posts'
 
 jest.spyOn(console, 'error')
 
@@ -94,6 +94,7 @@ describe('errors are returned correctly', () => {
       expect(console.error).toHaveBeenCalledWith(errMessage)
     })
   })
+
   it('returns an error', async () => {
     expect.assertions(2)
 
@@ -101,6 +102,29 @@ describe('errors are returned correctly', () => {
     return addPost(fakeData[0]).then(() => {
       expect(scope.isDone()).toBeTruthy()
       expect(console.error).toHaveBeenCalledWith(errMessage)
+    })
+  })
+  it('returns an error on deletePostDataById', async () => {
+    expect.assertions(2)
+
+    const scope = nock(rootURL)
+      .delete('/api/v1/posts/4')
+      .replyWithError(errMessage)
+    return deletePostDataById(4).then(() => {
+      expect(scope.isDone()).toBeTruthy()
+      expect(console.error).toHaveBeenCalledWith(errMessage)
+    })
+  })
+})
+
+//DELETE post API call
+
+describe('DELETE /api/v1/posts/:id', () => {
+  it('returns status 200', async () => {
+    expect.assertions(1)
+    const scope = nock(rootURL).delete('/api/v1/posts/4').reply(200)
+    return deletePostDataById(4).then(() => {
+      expect(scope.isDone()).toBeTruthy()
     })
   })
 })

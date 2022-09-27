@@ -1,7 +1,12 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getAllPosts, getPostById, addPost,deletePostById } = require('../../db/index.js')
+const {
+  getAllPosts,
+  getPostById,
+  addPost,
+  deletePostById,
+} = require('../../db/index.js')
 
 //----auth
 import checkJwt from '../../auth0'
@@ -153,10 +158,7 @@ describe('POST /api/v1/posts', () => {
 // --------testing delete route with auth-------how to test with auth??----
 describe('DELETE /api/v1/posts/:id', () => {
   it('returns status 200 when db function resolves', () => {
-    const fakePostId = 4
-    deletePostById.mockReturnValue(
-      Promise.resolve({ ...fakeData[0], id: fakePostId })
-    )
+    deletePostById.mockReturnValue(Promise.resolve({}))
     return request(server)
       .delete('/api/v1/posts/4')
       .then((res) => {
@@ -164,11 +166,14 @@ describe('DELETE /api/v1/posts/:id', () => {
       })
   })
   it('returns status 404 and an error message when db function rejects', () => {
-    deletePostById.mockImplementation(() => Promise.reject(new Error('oh dear, sad')))
+    deletePostById.mockImplementation(() =>
+      Promise.reject(new Error('oh dear, sad'))
+    )
     return request(server)
-      .delete('/api/v1/posts')
+      .delete('/api/v1/posts/4')
       .then((res) => {
-        expect(res.status).toBe(404)
+        expect(res.status).toBe(500)
+        expect(res.text).toBe('oh dear, sad')
         return null
       })
   })
