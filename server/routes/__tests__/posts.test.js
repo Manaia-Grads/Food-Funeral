@@ -19,7 +19,7 @@ jest.spyOn(console, 'error')
 beforeEach(() => {
   const FAKE_USER_ID = 'auth0|123456789'
   checkJwt.mockImplementation((req, res, next) => {
-    req.user = { sub: FAKE_USER_ID }
+    req.auth = { sub: FAKE_USER_ID }
     return next()
   })
 })
@@ -125,6 +125,7 @@ describe('GET /api/v1/posts', () => {
   })
 })
 
+//----TO DO fix me
 describe('POST /api/v1/posts', () => {
   it('returns status 200 and the post data object when db function resolves', () => {
     const newPostId = 26
@@ -142,6 +143,7 @@ describe('POST /api/v1/posts', () => {
       })
   })
 
+  //----TO DO fix me
   it('returns status 500 and an error message when db function rejects', () => {
     addPost.mockImplementation(() => Promise.reject(new Error('oh dear, sad')))
 
