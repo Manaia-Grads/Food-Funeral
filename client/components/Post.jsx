@@ -7,7 +7,6 @@ import AddComment from './AddComment.jsx'
 import Comments from './Comments.jsx'
 
 export default function Post() {
-  
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
