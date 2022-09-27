@@ -31,9 +31,12 @@ export function addPost(post, token) {
 }
 
 export function deletePostDataById(id) {
-  return request.delete(rootURL + '/posts/' + id).then((res) => {
-    return res.body
-  })
+  return request
+    .delete(rootURL + '/posts/' + id)
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
 }
 
 export function updatePost(post, id) {

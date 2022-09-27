@@ -1,7 +1,12 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getAllPosts, getPostById, addPost } = require('../../db/index.js')
+const {
+  getAllPosts,
+  getPostById,
+  addPost,
+  deletePostById,
+} = require('../../db/index.js')
 
 //----auth
 import checkJwt from '../../auth0'
@@ -161,6 +166,30 @@ describe('POST /api/v1/posts', () => {
       .then((res) => {
         expect(res.status).toBe(401)
         expect(res.text).toBe('Unauthorized')
+        return null
+      })
+  })
+})
+
+// --------testing delete route with auth-------how to test with auth??----
+describe('DELETE /api/v1/posts/:id', () => {
+  it('returns status 200 when db function resolves', () => {
+    deletePostById.mockReturnValue(Promise.resolve({}))
+    return request(server)
+      .delete('/api/v1/posts/4')
+      .then((res) => {
+        expect(res.status).toBe(200)
+      })
+  })
+  it('returns status 404 and an error message when db function rejects', () => {
+    deletePostById.mockImplementation(() =>
+      Promise.reject(new Error('oh dear, sad'))
+    )
+    return request(server)
+      .delete('/api/v1/posts/4')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toBe('oh dear, sad')
         return null
       })
   })
