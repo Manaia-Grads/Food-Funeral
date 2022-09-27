@@ -22,6 +22,23 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.post('/:id', multerUpload.single('file'), (req, res) => {
+  const post = req.body
+
+  post.image = req.file.path.substring(29)
+
+  db.updatePost(post, req.params.id)
+    .then((ids) => {
+      return db.getPostById(ids)
+    })
+    .then((post) => {
+      res.json(post)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.get('/', (req, res) => {
   db.getAllPosts()
     .then((posts) => {
