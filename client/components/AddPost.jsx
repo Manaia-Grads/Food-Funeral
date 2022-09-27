@@ -7,8 +7,7 @@ function AddPost() {
   const { getAccessTokenSilently } = useAuth0()
   const navigate = useNavigate()
 
-  const { user, logout, loginWithRedirect, isLoading, isAuthenticated } =
-    useAuth0()
+  const { user } = useAuth0()
 
   const initialData = {
     title: '',
