@@ -36,8 +36,9 @@ export function deletePostDataById(id) {
   })
 }
 
-export function updatePost(post) {
-  return request.update(`${rootURL}/posts/${post.id}`).then((res) => {
+export function updatePost(post, id) {
+  console.log(post)
+  return request.patch(`${rootURL}/posts/${id}`).then((res) => {
     return res.body
   })
 }

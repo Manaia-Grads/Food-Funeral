@@ -56,19 +56,16 @@ router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
     })
 })
 
-router.update('/:id', checkJwt, multerUpload.single('file'), (req, res) => {
+router.patch('/:id', multerUpload.single('file'), (req, res) => {
+  console.log(req.body)
   const post = req.body
-
-  if (!post.auth0_id) {
-    res.status(401).send('Unauthorized')
-    return
-  }
 
   post.image = req.file.path.substring(29)
 
   db.updatePost(post, req.params.id)
     .then((ids) => {
-      return db.getPostById(ids[0])
+      console.log(ids)
+      return db.getPostById(ids)
     })
     .then((post) => {
       res.json(post)

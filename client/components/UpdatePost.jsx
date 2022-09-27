@@ -3,19 +3,14 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updatePost } from '../apis/posts'
 
-export function UpdatePost({ postData }) {
-  const { getAccessTokenSilently } = useAuth0()
+export function UpdatePost({ postData, id }) {
   const navigate = useNavigate()
 
-  const { user, logout, loginWithRedirect, isLoading, isAuthenticated } =
-    useAuth0()
-  console.log(postData)
+  const { user } = useAuth0()
   const initialData = {
     title: postData.title,
     date: postData.date_eaten,
     content: postData.content,
-    auth0_id: user?.sub || '',
-    name: user?.name || '',
   }
   const [form, setForm] = useState(initialData)
 
@@ -39,15 +34,9 @@ export function UpdatePost({ postData }) {
     formData.append('title', form.title)
     formData.append('date', form.date)
     formData.append('content', form.content)
-    formData.append('auth0_id', form.auth0_id)
-    formData.append('name', form.name)
 
-    getAccessTokenSilently()
-      .then((token) => {
-        return updatePost(formData, token)
-      })
+    updatePost(formData, id)
       .then((newPostData) => {
-        setForm(initialData)
         navigate(`/posts/${newPostData.id}`)
       })
       .catch((err) => console.error(err.message))
@@ -60,9 +49,6 @@ export function UpdatePost({ postData }) {
         encType="multipart/form-data"
         onSubmit={handleSubmit}
       >
-        <input type="hidden" id="auth0_id" name="auth0_id" value={user?.sub} />
-        <input type="hidden" id="name" name="name" value={user?.name} />
-
         <br />
 
         <label htmlFor="title">Post Title</label>
@@ -72,6 +58,7 @@ export function UpdatePost({ postData }) {
           name="title"
           id="title"
           type="text"
+          value={form.title}
         />
 
         <br />
@@ -83,6 +70,7 @@ export function UpdatePost({ postData }) {
           name="date"
           id="date"
           type="date"
+          value={form.date}
         />
 
         <br />
@@ -93,6 +81,7 @@ export function UpdatePost({ postData }) {
           onChange={handleChange}
           name="content"
           id="content"
+          value={form.content}
         />
 
         <br />

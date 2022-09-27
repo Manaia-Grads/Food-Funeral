@@ -12,7 +12,6 @@ export default function Post() {
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
-  let renderUpdateButton = false
 
   const [update, setUpdate] = useState({ updateStatus: false })
 
@@ -21,7 +20,6 @@ export default function Post() {
   }, [])
 
   function updateClickHandler() {
-    console.log(renderUpdateButton)
     setUpdate({ updateStatus: true })
   }
 
@@ -52,7 +50,7 @@ export default function Post() {
         >
           Edit Post
         </button>
-        {update.updateStatus && <UpdatePost postData={post} />}
+        {update.updateStatus && <UpdatePost postData={post} id={id} />}
 
         <DeletePost id={id} auth0_id={post.auth0_id} />
 
