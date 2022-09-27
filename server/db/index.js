@@ -20,7 +20,6 @@ function addPost(post, db = connection) {
   })
 }
 
-
 function deletePostById(postId, db = connection) {
   return db('posts').where('id', postId).del()
 }
@@ -41,6 +40,7 @@ function addComment(comment, postId, db = connection) {
     content: comment.content,
     post_id: postId,
     auth0_id: comment.auth0Id,
+    name: comment.name,
     date_created: Date.now(),
   })
 }

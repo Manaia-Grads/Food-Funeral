@@ -13,6 +13,7 @@ router.get('/:id/comments', (req, res) => {
           return {
             id: comment.id,
             content: comment.content,
+            name: comment.name,
             auth0Id: comment.auth0_id,
             postId: comment.post_id,
             date: comment.date_created,
@@ -44,7 +45,8 @@ router.post('/:id/comments', (req, res) => {
       })
     })
     .catch((err) => {
-      res.status(500).send(err.message)
+      console.error(err)
+      res.status(500).json({ message: 'Something went wrong' })
     })
 })
 

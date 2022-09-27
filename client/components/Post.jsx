@@ -11,7 +11,6 @@ export default function Post() {
   const dispatch = useDispatch()
   const { data: post, loading, error } = useSelector((state) => state.post)
   const { id } = useParams()
-  console.log('post', post)
   useEffect(() => {
     dispatch(getPost(id))
   }, [])
@@ -43,7 +42,6 @@ export default function Post() {
           <Comments />
           <AddComment />
         </div>
-
       </div>
     </>
   )
