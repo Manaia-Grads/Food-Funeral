@@ -37,8 +37,10 @@ export function deletePostDataById(id) {
 }
 
 export function updatePost(post, id) {
-  console.log(post)
-  return request.patch(`${rootURL}/posts/${id}`).then((res) => {
-    return res.body
-  })
+  return request
+    .post(`${rootURL}/posts/${id}`)
+    .send(post)
+    .then((res) => {
+      return res.body
+    })
 }
