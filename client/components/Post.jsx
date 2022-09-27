@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getPost } from '../actions/post.js'
-import DeletePost from './DeletePost.jsx'
+import { UpdatePost } from './UpdatePost.jsx'
+import { DeletePost } from './DeletePost.jsx'
 import AddComment from './AddComment.jsx'
 import Comments from './Comments.jsx'
 
@@ -35,9 +36,10 @@ export default function Post() {
           <p>Posted By: {post?.name}</p>
         </div>
         <div>{post?.content}</div>
-
-        <DeletePost id={id} auth0_id={post.auth0_id} />
-
+        <div>
+          <UpdatePost postData={post} id={id} />
+          <DeletePost id={id} auth0_id={post.auth0_id} />
+        </div>
         <div>
           <Comments />
           <AddComment />

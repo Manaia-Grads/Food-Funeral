@@ -3,7 +3,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { screen, render } from '@testing-library/react'
 import { MemoryRouter as Router } from 'react-router-dom'
-import DeletePost from './DeletePost'
+import { DeletePost } from './DeletePost'
 
 const fakeUser = {
   name: 'Benana',

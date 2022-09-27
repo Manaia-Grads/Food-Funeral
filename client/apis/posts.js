@@ -38,3 +38,12 @@ export function deletePostDataById(id) {
     })
     .catch((err) => console.error(err.message))
 }
+
+export function updatePost(post, id) {
+  return request
+    .post(`${rootURL}/posts/${id}`)
+    .send(post)
+    .then((res) => {
+      return res.body
+    })
+}

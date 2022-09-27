@@ -95,18 +95,16 @@ describe('errors are returned correctly', () => {
     })
   })
 
-  it('returns an error', async () => {
+  it('returns an error when addPost', async () => {
     expect.assertions(2)
-
     const scope = nock(rootURL).post('/api/v1/posts').replyWithError(errMessage)
     return addPost(fakeData[0]).then(() => {
       expect(scope.isDone()).toBeTruthy()
       expect(console.error).toHaveBeenCalledWith(errMessage)
     })
   })
-  it('returns an error on deletePostDataById', async () => {
+  it.todo('returns an error on delet PostDataById', async () => {
     expect.assertions(2)
-
     const scope = nock(rootURL)
       .delete('/api/v1/posts/4')
       .replyWithError(errMessage)
@@ -116,8 +114,6 @@ describe('errors are returned correctly', () => {
     })
   })
 })
-
-//DELETE post API call
 
 describe('DELETE /api/v1/posts/:id', () => {
   it('returns status 200', async () => {

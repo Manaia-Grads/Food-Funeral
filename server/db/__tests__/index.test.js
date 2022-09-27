@@ -61,3 +61,45 @@ describe('addPost', () => {
       })
   })
 })
+
+describe('getAllCommentsByPostId', () => {
+  it('gets an array of comment objects', () => {
+    return db.getAllCommentsByPostId(1, testDb).then((comments) => {
+      expect(comments).toHaveLength(2)
+      expect(comments[0].content).toBe('yum!!')
+    })
+  })
+})
+
+describe('addComment', () => {
+  it('adds a comment object to the db', () => {
+    return db
+      .addComment(
+        {
+          content: 'yummy!!',
+          auth0_id: 'google-oauth2|103547991597142817347',
+          name: 'John Foo',
+          date_created: '2022-09-22',
+        },
+        3,
+        testDb
+      )
+      .then((ids) => {
+        expect(ids).toStrictEqual([3])
+        return db.getCommentById(ids[0], testDb)
+      })
+      .then((comment) => {
+        expect(comment.content).toBe('yummy!!')
+        expect(comment.post_id).toBe(3)
+      })
+  })
+})
+
+describe('getCommentById', () => {
+  it("gets a comment object by it's id", () => {
+    return db.getCommentById(1, testDb).then((comment) => {
+      expect(comment.id).toBe(1)
+      expect(comment.content).toBe('yum!!')
+    })
+  })
+})
