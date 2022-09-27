@@ -103,7 +103,7 @@ describe('errors are returned correctly', () => {
       expect(console.error).toHaveBeenCalledWith(errMessage)
     })
   })
-  it.todo('returns an error on delet PostDataById', async () => {
+  it('returns an error on delete PostDataById', async () => {
     expect.assertions(2)
     const scope = nock(rootURL)
       .delete('/api/v1/posts/4')
