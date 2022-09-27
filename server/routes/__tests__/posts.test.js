@@ -120,7 +120,6 @@ describe('GET /api/v1/posts', () => {
   })
 })
 
-//----------needs auth
 describe('POST /api/v1/posts', () => {
   it('returns status 200 and the post data object when db function resolves', () => {
     const newPostId = 26
@@ -137,14 +136,31 @@ describe('POST /api/v1/posts', () => {
         expect(res.body.title).toBe('I ate a banana')
       })
   })
+
   it('returns status 500 and an error message when db function rejects', () => {
     addPost.mockImplementation(() => Promise.reject(new Error('oh dear, sad')))
 
     return request(server)
-      .get('/api/v1/posts')
+      .post('/api/v1/posts')
+      .send(fakeData[0])
       .then((res) => {
         expect(res.status).toBe(500)
-        expect(console.error).toHaveBeenCalledWith(new Error('oh dear, sad'))
+        expect(res.text).toBe('oh dear, sad')
+        return null
+      })
+  })
+
+  it('Send unauthorised user to route and returns status 401 - unauthorized', () => {
+    checkJwt.mockImplementation((req, res, next) => {
+      req.user = { sub: '' }
+      return next()
+    })
+
+    return request(server)
+      .post('/api/v1/posts')
+      .then((res) => {
+        expect(res.status).toBe(401)
+        expect(res.text).toBe('Unauthorized')
         return null
       })
   })
