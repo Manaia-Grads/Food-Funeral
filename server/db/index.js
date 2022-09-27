@@ -24,6 +24,15 @@ function deletePostById(postId, db = connection) {
   return db('posts').where('id', postId).del()
 }
 
+function updatePost(post, id, db = connection) {
+  return db('posts').where('id', id).update({
+    title: post.title,
+    content: post.content,
+    date_eaten: post.date,
+    img: post.image,
+  })
+}
+
 function getAllCommentsByPostId(id, db = connection) {
   return db('comments')
     .select(
@@ -53,6 +62,7 @@ module.exports = {
   getPostById,
   addPost,
   deletePostById,
+  updatePost,
   getAllCommentsByPostId,
   getCommentById,
   addComment,
