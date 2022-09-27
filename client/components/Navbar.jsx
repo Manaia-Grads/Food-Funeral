@@ -21,21 +21,21 @@ export default function Navbar() {
       <div>
         <div className="mx-auto flex flex-wrap items-center justify-between">
           <div className=" hidden w-full md:block" id="navbar-default">
-            <ul className="mt-4 flex flex-col border-blue-400 bg-blue-400 p-2 md:mt-0 md:flex-row md:space-x-4 md:border-4 md:text-sm md:font-medium">
+            <ul className="mt-4 flex flex-col border-custom-black bg-custom-blue p-2 md:mt-0 md:flex-row md:space-x-4 md:border-4 md:text-sm md:font-medium">
               <li>
                 <Link
                   to="/"
-                  className="hover:blue-400 block rounded py-2 pr-4 pl-3 hover:bg-blue-400  focus:bg-blue-400 focus:outline-none focus:ring focus:ring-violet-400 md:border-2 md:bg-transparent md:p-2 md:text-white"
+                  className="border-custom-black hover:bg-custom-yellow block rounded py-2 px-4 border-2 bg-custom-white p-2 text-black font-fredoka-one"
                   aria-current="page"
                 >
-                  View All Blogs
+                  Home
                 </Link>
               </li>
 
               <li>
                 <Link
                   to="/create-post"
-                  className="block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-blue-400 hover:text-white focus:bg-blue-400 focus:outline-none focus:ring focus:ring-violet-400 md:border-2 md:p-2 md:text-white md:hover:text-white"
+                  className="border-custom-black hover:bg-custom-pink block rounded py-2 px-4 border-2 bg-custom-white p-2 text-black font-fredoka-one"
                 >
                   Create Post
                 </Link>
@@ -45,20 +45,16 @@ export default function Navbar() {
                 <>
                   <li
                     data-testid="username"
-                    className="absolute right-52 mt-2 md:text-white"
+                    className="absolute right-32 mt-2 md:text-white"
                   >
-                    {user?.name} {' ' + 'AKA ' + user?.nickname}
+                    {user?.nickname}
                   </li>
 
-                  <li className="absolute right-32  md:w-10">
-                    <img
-                      className="rounded-full"
-                      src={user?.picture}
-                      alt={user?.name}
-                    />
-                  </li>
+                  {/* <li className="absolute right-32  md:w-10">
+                    <img className="rounded-full" alt={user?.name} />
+                  </li> */}
 
-                  <li className="absolute right-5 block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-red-700 hover:text-white md:border-2 md:border-purple-900 md:bg-purple-900 md:p-2 md:text-white md:hover:text-white">
+                  <li className="absolute right-5 border-custom-black hover:bg-custom-grey block rounded py-2 px-4 border-2 bg-custom-white p-2 text-black font-fredoka-one">
                     <div>
                       <button data-testid="logoff" onClick={handleLogOff}>
                         Log Off
@@ -67,7 +63,7 @@ export default function Navbar() {
                   </li>
                 </>
               ) : (
-                <li className="absolute right-5 block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-green-700 hover:text-white  md:border-2 md:border-purple-900 md:bg-purple-900 md:p-2 md:text-white md:hover:text-white">
+                <li className="absolute right-5 border-custom-black hover:bg-custom-grey block rounded py-2 px-4 border-2 bg-custom-white p-2 text-black font-fredoka-one">
                   <button data-testid="signin" onClick={handleSignIn}>
                     Sign In
                   </button>
