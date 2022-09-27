@@ -29,9 +29,9 @@ router.get('/:id/comments', (req, res) => {
 })
 
 router.post('/:id/comments', (req, res) => {
-  const comment = req.body
+  const commentContent = req.body
   const { id: postId } = req.params
-  db.addComment(comment, postId)
+  db.addComment(commentContent, postId)
     .then((ids) => {
       return db.getCommentById(ids[0])
     })

@@ -6,7 +6,6 @@ const {
   getCommentById,
   addComment,
 } = require('../../db/index.js')
-const { get } = require('superagent')
 
 jest.mock('../../db/index.js')
 
@@ -35,6 +34,13 @@ const fakeComments = [
   },
 ]
 
+const fakeSubmit = {
+  content: 'test yucky!!',
+  auth0_id: 'google-oauth2|103547991597142817347',
+  name: 'Foo Bar',
+  date_created: '1664233155372',
+}
+
 describe('GET /api/v1/posts/:id/comments', () => {
   it('returns status 200 and an array of objects on promise resolution', () => {
     getAllCommentsByPostId.mockReturnValue(Promise.resolve(fakeComments))
@@ -56,6 +62,25 @@ describe('GET /api/v1/posts/:id/comments', () => {
         expect(res.status).toBe(500)
         expect(res.body.message).toBe('Something went wrong')
         expect(console.error).toHaveBeenCalledWith(new Error('oh dear, sad'))
+      })
+  })
+})
+
+describe('POST /api/v1/posts/:id/comments', () => {
+  it('returns status 200 and the comment data object when db function resolves', () => {
+    const newCommentId = 24
+    addComment.mockReturnValue(Promise.resolve([newCommentId]))
+    getCommentById.mockReturnValue(
+      Promise.resolve({ ...fakeSubmit, id: newCommentId, post_id: 3 })
+    )
+
+    return request(server)
+      .post('/api/v1/posts/3/comments')
+      .send(fakeSubmit)
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(res.body.id).toBe(24)
+        expect(res.body.postId).toBe(3)
       })
   })
 })
