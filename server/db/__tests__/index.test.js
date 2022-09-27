@@ -96,5 +96,10 @@ describe('addComment', () => {
 })
 
 describe('getCommentById', () => {
-  it.todo("gets a comment object by it's id")
+  it("gets a comment object by it's id", () => {
+    return db.getCommentById(1, testDb).then((comment) => {
+      expect(comment.id).toBe(1)
+      expect(comment.content).toBe('yum!!')
+    })
+  })
 })
