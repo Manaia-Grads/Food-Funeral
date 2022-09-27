@@ -25,7 +25,11 @@ router.delete('/:id', (req, res) => {
 router.post('/:id', multerUpload.single('file'), (req, res) => {
   const post = req.body
 
-  post.image = req.file.path.substring(29)
+  if (!req.file) {
+    post.image = 'tomato.png'
+  } else {
+    post.image = req.file.path.substring(29)
+  }
 
   db.updatePost(post, req.params.id)
     .then((ids) => {
@@ -60,7 +64,11 @@ router.post('/', checkJwt, multerUpload.single('file'), (req, res) => {
     return
   }
 
-  post.image = req.file.path.substring(29)
+  if (!req.file) {
+    post.image = 'tomato.png'
+  } else {
+    post.image = req.file.path.substring(29)
+  }
 
   db.addPost(post)
     .then((ids) => {
