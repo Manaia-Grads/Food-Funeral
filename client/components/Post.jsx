@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getPost } from '../actions/post.js'
 import { UpdatePost } from './UpdatePost.jsx'
-import { DeletePost } from './DeletePost.jsx'
+// import { DeletePost } from './DeletePost.jsx'
 import AddComment from './AddComment.jsx'
 import Comments from './Comments.jsx'
 
@@ -32,10 +32,9 @@ export default function Post() {
 
           <p className="text-xl font-fredoka-one my-6">{post?.content}</p>
         </div>
-        <div>
-          <UpdatePost postData={post} id={id} />
-          <DeletePost id={id} auth0_id={post?.auth0_id} />
-        </div>
+      </div>
+      <div className="flex flex-wrap justify-center w-full bg-custom-blue border-4 border-custom-black mb-5">
+        <UpdatePost postData={post} id={id} />
       </div>
       <div
         className="flex flex-col items-center justify-center w-full bg-custom-pink border-4 border-custom-black mb-5

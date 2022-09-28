@@ -16,16 +16,15 @@ export function DeletePost({ id, auth0_id }) {
   }
 
   return (
-    <>
+    <div className="flex justify-center">
       {auth0_id == user?.sub && (
         <button
-          className="block rounded py-2 pr-4 pl-3 text-gray-700 hover:bg-green-700 hover:text-white  md:border-2 md:border-red-900 md:bg-red-900 md:p-2 md:text-white md:hover:text-white"
+          className="rounded-md font-fredoka-one border-custom-black border-2 bg-custom-blue hover:bg-custom-grey text-custom-black font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
           onClick={handleDelete}
         >
-          {' '}
           Delete
         </button>
       )}
-    </>
+    </div>
   )
 }
