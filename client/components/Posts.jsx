@@ -28,7 +28,7 @@ function Posts() {
             />
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-10">
+          <div className="grid grid-cols-4 gap-10 items-end">
             {data?.map((post) => (
               <Link key={post.id} to={`/posts/${post.id}`}>
                 <div className="w-full min-h-fit flex-auto border-4 border-black rounded-t-full bg-custom-grey hover:border-r-8 hover:border-b-8">

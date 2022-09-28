@@ -18,17 +18,6 @@ exports.seed = function (knex) {
         },
         {
           id: 2,
-          title: 'Spagett Inmabelly',
-          date_eaten: '2022-09-23',
-          content:
-            'Goodbye Spagett. Some thought it was a mistake that we were friends but I found it deeply rewarding. Lets be honest, things got super messy near the end but that was always in the recipe. Life was certainly more saucy with you at the table.',
-          img: 'spaghetti.png',
-          auth0_id: 'google-oauth2|117026446347775944394',
-          name: 'G SH',
-          date_created: '2022-09-23',
-        },
-        {
-          id: 3,
           title: 'Butter Board',
           date_eaten: '2022-09-18',
           content:
@@ -39,7 +28,7 @@ exports.seed = function (knex) {
           date_created: '2022-09-28',
         },
         {
-          id: 4,
+          id: 3,
           title: 'Banana Caramel Cake',
           date_eaten: '2022-09-03',
           content:
@@ -48,6 +37,17 @@ exports.seed = function (knex) {
           auth0_id: 'google-oauth2|103547991597142817347',
           name: 'BleuLovesBrunch',
           date_created: '2022-09-29',
+        },
+        {
+          id: 4,
+          title: 'Spag Enbelli',
+          date_eaten: '2022-09-23',
+          content:
+            'Goodbye Spag. Some thought it was a mistake that we were friends but I found it deeply rewarding. Lets be honest, things got super messy near the end but that was always in the recipe. Life was certainly more saucy with you at the table.',
+          img: 'spaghetti.png',
+          auth0_id: 'google-oauth2|117026446347775944394',
+          name: 'G SH',
+          date_created: '2022-09-23',
         },
         {
           id: 5,
