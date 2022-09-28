@@ -32,7 +32,7 @@ function Posts() {
             {data?.map((post) => (
               <Link key={post.id} to={`/posts/${post.id}`}>
                 <div className="w-full min-h-fit flex-auto border-4 border-black rounded-t-full bg-custom-grey hover:border-r-8 hover:border-b-8">
-                  <h3 className="mt-20 pt-4 text-3xl font-graduate uppercase text-center">
+                  <h3 className="mt-20 pt-4 text-3xl font-graduate uppercase text-center px-20">
                     {post.title}
                   </h3>
                   <img
