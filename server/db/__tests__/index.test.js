@@ -20,9 +20,7 @@ afterAll(() => {
 describe('getPostById', () => {
   it('gets the post by its Id from the database.', () => {
     return db.getPostById(1, testDb).then((postData) => {
-      expect(postData.content).toBe(
-        'this is a very long string that can be changed later'
-      )
+      expect(postData.content).toContain('He went by so many names, Porky')
     })
   })
 })
@@ -30,8 +28,8 @@ describe('getPostById', () => {
 describe('getAllPosts function', () => {
   it('returns all posts as an array of obj', () => {
     return db.getAllPosts(testDb).then((array) => {
-      expect(array).toHaveLength(3)
-      expect(array[0].title).toBe('I ate a cow')
+      expect(array).toHaveLength(8)
+      expect(array[0].title).toBe('Sweet Porky')
     })
   })
 })
@@ -41,7 +39,7 @@ describe('addPost', () => {
     return db
       .addPost(
         {
-          id: 4,
+          id: 9,
           title: 'test',
           date: '2022-09-22',
           content: 'test',
@@ -52,7 +50,7 @@ describe('addPost', () => {
         testDb
       )
       .then((ids) => {
-        expect(ids).toStrictEqual([4])
+        expect(ids).toStrictEqual([9])
         return db.getPostById(ids[0], testDb)
       })
       .then((post) => {

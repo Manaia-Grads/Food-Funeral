@@ -704,8 +704,13 @@ video {
   min-height: fit-content;
 }
 
+
 .w-2\/5 {
   width: 40%;
+}
+.min-h-0 {
+  min-height: 0px;
+
 }
 
 .w-full {
@@ -716,10 +721,16 @@ video {
   width: auto;
 }
 
+
 .w-fit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+
+.min-w-0 {
+  min-width: 0px;
 }
 
 .flex-auto {
@@ -838,10 +849,12 @@ video {
   background-color: rgb(74 139 235 / var(--tw-bg-opacity));
 }
 
+
 .object-contain {
   -o-object-fit: contain;
   object-fit: contain;
 }
+
 
 .p-2 {
   padding: 0.5rem;

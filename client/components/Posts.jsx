@@ -28,11 +28,13 @@ function Posts() {
             />
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-10">
+          <div className="grid grid-cols-4 gap-10 items-end">
             {data?.map((post) => (
               <Link key={post.id} to={`/posts/${post.id}`}>
+
                 <div className="flex flex-col justify-center w-full min-h-fit max-h-[38rem] flex-auto border-4 border-black rounded-t-full bg-custom-grey hover:border-r-8 hover:border-b-8">
                   <h3 className="mt-20 pt-4 text-3xl font-graduate uppercase text-center">
+
                     {post.title}
                   </h3>
                   <img

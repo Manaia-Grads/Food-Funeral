@@ -50,7 +50,7 @@ Our users want to:
 
 Our users want to:
  - [x] Write a blog post (text only)
- - [ ] Add a comment *in progress*
+ - [x] Add a comment
 
 ## Stretch
 
@@ -58,6 +58,6 @@ Our users want to:
 - [x] Login, logout, register securely 
 - [x] Write a post when logged in *in progress*
 - [x] Add an image to their post *in progress*
-- [ ] Edit their own blog posts
-- [ ] Delete their own blog post
+- [x] Edit their own blog posts
+- [x] Delete their own blog post
 
