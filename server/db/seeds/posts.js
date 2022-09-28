@@ -29,7 +29,7 @@ exports.seed = function (knex) {
         },
         {
           id: 3,
-          title: 'Banana Caramel Cake',
+          title: 'Banana Cake',
           date_eaten: '2022-09-03',
           content:
             'Omg. I feel soooo bad but this cake was delicious. Can not believe Cakey is dead now!!! It is just like they say… the first is the easiest… Now how will I stop?                    I hope that my family will forgive me. Fortunately I paid in cash so hopefully no evidence? Ahhh!! I don’t even know why I’m posting this… Surely the internet police will find me now? Okay. I have gotta plan my next step… But first - a cafe trip? >:-)',
@@ -84,7 +84,7 @@ exports.seed = function (knex) {
         },
         {
           id: 8,
-          title: 'Mrs Medium Rare Bread',
+          title: 'Mrs Bread',
           date_eaten: '2022-09-19',
           content:
             'Dear friend, medium rare bread with a buttered glaze, so simple yet so elite. Rest easy my sweet friend. With all my heart, I celebrate your life. Thank you, for always being there and for letting me know you`ve got my back on those busy mornings. You taught me to strive each day to get up early so I deserve you and I`ll continue to do my best, knowing that you`ll be there watching me.',
