@@ -53,7 +53,8 @@ exports.seed = function (knex) {
           id: 5,
           title: 'Broccoli Bro',
           date_eaten: '2022-09-27',
-          content: 'RIP, rest in little pieces my broccoli bro. Cheesy sauce and a pasta bed, you did not deserve to go out this way. When cradling your broccoli arms for the last time I seasoned the boiling water with my tears. It was hard letting you go... but I was hungry, so very hungry! I hope someday you can come to forgive me :(',
+          content:
+            'RIP, rest in little pieces my broccoli bro. Cheesy sauce and a pasta bed, you did not deserve to go out this way. When cradling your broccoli arms for the last time I seasoned the boiling water with my tears. It was hard letting you go... but I was hungry, so very hungry! I hope someday you can come to forgive me :(',
           img: 'broccoli.png',
           auth0_id: 'google-oauth2|110785178826811276971',
           name: 'The Boss',
@@ -63,7 +64,8 @@ exports.seed = function (knex) {
           id: 6,
           title: 'Ham-I-Am',
           date_eaten: '2022-09-23',
-          content: 'I am Ham. Ham I am. Would you like green lamb and yams? Unfortunately for Mr. Yam on the night of September 23rd I did like yams. I roasted them mercifully in the oven at 180 degrees Celsius for 30 minutes and then promptly consumed them.',
+          content:
+            'I am Ham. Ham I am. Would you like green lamb and yams? Unfortunately for Mr. Yam on the night of September 23rd I did like yams. I roasted them mercifully in the oven at 180 degrees Celsius for 30 minutes and then promptly consumed them.',
           img: 'yam.png',
           auth0_id: 'google-oauth2|110785178826811276971',
           name: 'Ham',
@@ -73,7 +75,8 @@ exports.seed = function (knex) {
           id: 7,
           title: 'Mother`s Egg',
           date_eaten: '2022-09-28',
-          content: 'The egg community lost a valuable member on Wednesday, September 28, 2022. Favorably known as Mr. Pete, who has served his life to a hungry mother of two, including a young baby. Mr. Pete, you`ll be hugely missed. Your life will continue by turning into the form of milk and supporting the mother and the baby`s growth. Your fella will follow your steps and hopefully join you soon.',
+          content:
+            'The egg community lost a valuable member on Wednesday, September 28, 2022. Favorably known as Mr. Pete, who has served his life to a hungry mother of two, including a young baby. Mr. Pete, you`ll be hugely missed. Your life will continue by turning into the form of milk and supporting the mother and the baby`s growth. Your fella will follow your steps and hopefully join you soon.',
           img: 'Screaming_Eggs_.jpeg',
           auth0_id: 'google-oauth2|103547991597142817347',
           name: 'Mum',

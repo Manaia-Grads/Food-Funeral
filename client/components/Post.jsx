@@ -25,10 +25,12 @@ export default function Post() {
       <div className="flex flex-col items-center justify-center w-full bg-custom-yellow border-4 border-custom-black mb-5">
         <h1 className="text-6xl font-fredoka-one my-2">{post?.title}</h1>
         <div className="w-2/5">
-          <img src={'/images/uploads/' + post?.img} alt={post?.title} />
-          <p className="text-md font-fredoka-one">
-            Posted by [ {post?.name} ] on {post?.date_eaten}
-          </p>
+          <div className="flex justify-center">
+            <img src={'/images/uploads/' + post?.img} alt={post?.title} />
+            <p className="text-md font-fredoka-one">
+              Posted by [ {post?.name} ] on {post?.date_eaten}
+            </p>
+          </div>
 
           <p className="text-xl font-fredoka-one my-6">{post?.content}</p>
         </div>
