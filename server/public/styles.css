@@ -686,7 +686,6 @@ video {
   width: 40%;
 }
 
-
 .w-full {
   width: 100%;
 }
@@ -742,7 +741,6 @@ video {
 .gap-10 {
   gap: 2.5rem;
 }
-
 
 .gap-2 {
   gap: 0.5rem;
@@ -1036,7 +1034,7 @@ video {
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
- }
+}
 
 .text-custom-black {
   --tw-text-opacity: 1;
