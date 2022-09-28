@@ -387,7 +387,7 @@ Make sure disabled buttons don't get the pointer cursor.
 /*
 1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
 2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-   This can trigger a poorly considered lint error in some tools but is included by design.
+This can trigger a poorly considered lint error in some tools but is included by design.
 */
 
 img,
@@ -678,9 +678,13 @@ video {
   border-width: 1px;
 }
 
-.border-blue-400 {
+.border-2 {
+  border-width: 2px;
+}
+
+.border-custom-black {
   --tw-border-opacity: 1;
-  border-color: rgb(96 165 250 / var(--tw-border-opacity));
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .bg-blue-500 {
@@ -688,9 +692,14 @@ video {
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
-.bg-blue-400 {
+.bg-custom-blue {
   --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+  background-color: rgb(74 139 235 / var(--tw-bg-opacity));
+}
+
+.bg-custom-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-2 {
@@ -727,9 +736,8 @@ video {
   text-align: center;
 }
 
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+.font-fredoka-one {
+  font-family: Fredoka One;
 }
 
 .text-3xl {
@@ -761,6 +769,11 @@ video {
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .text-blue-400 {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
@@ -771,14 +784,14 @@ video {
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-400:hover {
+.hover\:bg-green-700:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+  background-color: rgb(21 128 61 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-red-700:hover {
+.hover\:bg-custom-yellow:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+  background-color: rgb(255 227 84 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-green-700:hover {
@@ -786,9 +799,14 @@ video {
   background-color: rgb(21 128 61 / var(--tw-bg-opacity));
 }
 
-.hover\:text-white:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+.hover\:bg-custom-yellow:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 227 84 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-custom-pink:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 187 200 / var(--tw-bg-opacity));
 }
 
 .focus\:bg-blue-400:focus {
@@ -838,17 +856,12 @@ video {
     margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
-  .md\:border-4 {
-    border-width: 4px;
-  }
-
   .md\:border-2 {
     border-width: 2px;
   }
 
-  .md\:border-purple-900 {
-    --tw-border-opacity: 1;
-    border-color: rgb(88 28 135 / var(--tw-border-opacity));
+  .md\:border-4 {
+    border-width: 4px;
   }
 
   .md\:border-red-900 {
@@ -856,18 +869,19 @@ video {
     border-color: rgb(127 29 29 / var(--tw-border-opacity));
   }
 
-  .md\:bg-transparent {
-    background-color: transparent;
-  }
-
-  .md\:bg-purple-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(88 28 135 / var(--tw-bg-opacity));
+  .md\:border-purple-900 {
+    --tw-border-opacity: 1;
+    border-color: rgb(88 28 135 / var(--tw-border-opacity));
   }
 
   .md\:bg-red-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(127 29 29 / var(--tw-bg-opacity));
+  }
+
+  .md\:bg-purple-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(88 28 135 / var(--tw-bg-opacity));
   }
 
   .md\:p-2 {
