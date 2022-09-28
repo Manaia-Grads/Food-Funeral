@@ -3,8 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
-  const { user, logout, loginWithRedirect, isLoading, isAuthenticated } =
-    useAuth0()
+  const { user, logout, loginWithRedirect, isAuthenticated } = useAuth0()
 
   const handleLogOff = (e) => {
     e.preventDefault()
@@ -16,7 +15,7 @@ export default function Navbar() {
     return loginWithRedirect()
   }
 
-  return !isLoading ? (
+  return (
     <>
       <div>
         <div className="mx-auto flex flex-wrap items-center justify-between">
@@ -49,11 +48,6 @@ export default function Navbar() {
                   >
                     {user?.nickname}
                   </li>
-
-                  {/* <li className="absolute right-32  md:w-10">
-                    <img className="rounded-full" alt={user?.name} />
-                  </li> */}
-
                   <li className="absolute right-5 border-custom-black hover:bg-custom-grey block rounded py-2 px-4 border-2 bg-custom-white p-2 text-black font-fredoka-one">
                     <div>
                       <button data-testid="logoff" onClick={handleLogOff}>
@@ -74,11 +68,5 @@ export default function Navbar() {
         </div>
       </div>
     </>
-  ) : (
-    <img
-      className="m-auto flex w-20"
-      src={'/images/loading.gif'}
-      alt="loading"
-    ></img>
   )
 }
