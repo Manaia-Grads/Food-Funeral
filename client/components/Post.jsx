@@ -22,11 +22,11 @@ export default function Post() {
     'No post here'
   ) : (
     <>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-full">
         <h1>{post?.title}</h1>
         <div>
           <img
-            className="max-w-sm"
+            className="max-w-lg"
             src={'/images/uploads/' + post?.img}
             alt={post?.title}
           />
@@ -40,9 +40,9 @@ export default function Post() {
           <UpdatePost postData={post} id={id} />
           <DeletePost id={id} auth0_id={post?.auth0_id} />
         </div>
-        <div>
-          <Comments />
+        <div className="w-2/5">
           <AddComment />
+          <Comments />
         </div>
       </div>
     </>

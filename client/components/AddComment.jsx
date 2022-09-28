@@ -40,17 +40,23 @@ function AddComment() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="flex flex-wrap flex-row-reverse" onSubmit={handleSubmit}>
         <input type="hidden" id="postId" name="postId" />
 
-        <label htmlFor="content">Add a comment</label>
+        <label htmlFor="content" className="font-fredoka-one">
+          Add a comment
+        </label>
         <textarea
+          className="border rounded-md w-full"
           onChange={handleChange}
           id="content"
           name="content"
           value={form.content}
         />
-        <input type="submit" />
+        <input
+          className="align-right border-custom-black hover:bg-custom-blue block rounded border-2 bg-custom-white px-1 text-black font-fredoka-one"
+          type="submit"
+        />
       </form>
     </>
   )
