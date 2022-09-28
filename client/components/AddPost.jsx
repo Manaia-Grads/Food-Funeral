@@ -67,36 +67,30 @@ function AddPost() {
         </div>
 
         <div className="flex items-center border-custom-black border-4 bg-custom-pink flex-col mt-4 mb-4 py-20 font-graduate">
-          <form
-            className=""
-            encType="multipart/form-data"
-            onSubmit={handleSubmit}
-          >
+          <form encType="multipart/form-data" onSubmit={handleSubmit}>
             <input
-              className=""
               type="hidden"
               id="auth0_id"
               name="auth0_id"
               value={user?.sub}
             />
             <input type="hidden" id="name" name="name" value={user?.name} />
+            <div className="flex mb-8">
+              <label
+                className="w-full grow text-lg pr-8 text-left"
+                htmlFor="title"
+              >
+                name of deceased
+              </label>
+              <input
+                className="border-custom-black border-2 font-fredoka-one w-full rounded"
+                onChange={handleChange}
+                name="title"
+                id="title"
+                type="text"
+              />
+            </div>
             <div className="px-60">
-              <div className="flex mb-8">
-                <label
-                  className="w-full grow text-lg pr-8 text-left"
-                  htmlFor="title"
-                >
-                  name of deceased
-                </label>
-                <input
-                  className="border-custom-black border-2 font-fredoka-one w-full rounded"
-                  onChange={handleChange}
-                  name="title"
-                  id="title"
-                  type="text"
-                />
-              </div>
-
               <div className="flex mb-8">
                 <label
                   className="w-full grow text-lg pr-8 text-left"
@@ -146,7 +140,7 @@ function AddPost() {
 
             <div className="flex flex-col place-items-center">
               <input
-                className="rounded-xl font-fredoka-one border-custom-black border-2 bg-custom-white hover:bg-custom-grey text-custom-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="font-fredoka-one border-custom-black border-2 bg-custom-white hover:bg-custom-grey text-custom-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               />
             </div>
