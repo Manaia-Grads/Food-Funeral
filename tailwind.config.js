@@ -11,6 +11,11 @@ module.exports = {
       'custom-grey':'#E6E6E6',
     }
   },
+  fontFamily: {
+    'fredoka-one': ['Fredoka One'],
+    'graduate': ['graduate'],
+
   },
   plugins: [],
+  }
 }
