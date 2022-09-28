@@ -52,99 +52,103 @@ export function UpdatePost({ postData, id }) {
   }
 
   return (
-    <div className="px-8">
-      {postData?.auth0_id == user?.sub && (
-        <>
+    <>
+      {postData?.auth0_id == user?.sub ? (
+        <div className="px-5 flex flex-wrap justify-center w-full bg-custom-blue border-4 border-custom-black mb-5">
           <button
             onClick={updateClickHandler}
             className="m-2 rounded-md font-fredoka-one border-custom-black border-2 bg-custom-pink hover:bg-custom-yellow text-custom-black font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
           >
             Edit or Delete Post
           </button>
-        </>
+        </div>
+      ) : (
+        <></>
       )}
       {update.updateStatus && (
-        <div className="flex items-center border-custom-black border-4 bg-custom-pink flex-col mt-4 mb-4 py-2 font-graduate">
-          <h1 className="text-5xl text-center mb-4">Edit your post</h1>
-          <form
-            className="content-center"
-            encType="multipart/form-data"
-            onSubmit={handleSubmit}
-          >
-            <div className="px-60">
-              <div className="flex mb-8">
+        <div className="flex flex-wrap justify-center w-full bg-custom-blue mb-5">
+          <div className="flex items-center border-custom-black border-4 bg-custom-pink flex-col mt-4 mb-4 py-2 font-graduate">
+            <h1 className="text-5xl text-center mb-4">Edit your post</h1>
+            <form
+              className="content-center"
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
+            >
+              <div className="px-60">
+                <div className="flex mb-8">
+                  <label
+                    className="w-full grow text-lg pr-8 text-left"
+                    htmlFor="title"
+                  >
+                    name of deceased
+                  </label>
+                  <input
+                    className="border-custom-black border-2 font-fredoka-one w-full rounded"
+                    onChange={handleChange}
+                    name="title"
+                    id="title"
+                    type="text"
+                    value={form.title}
+                  />
+                </div>
+                <div className="flex mb-8">
+                  <label
+                    className="w-full grow text-lg pr-8 text-left"
+                    htmlFor="date"
+                  >
+                    date of passing
+                  </label>
+                  <input
+                    className="border-custom-black border-2 font-fredoka-one w-full rounded"
+                    onChange={handleChange}
+                    name="date"
+                    id="date"
+                    type="date"
+                    value={form.date}
+                  />
+                </div>
+                <div className="flex mb-4">
+                  <label
+                    className="w-full grow text-lg pr-8 text-left"
+                    htmlFor="file"
+                  >
+                    add a photo
+                  </label>
+                  <input
+                    className="font-fredoka-one w-full rounded-xl border-custom-black border-2"
+                    onChange={handleChange}
+                    name="file"
+                    id="file"
+                    type="file"
+                  />
+                </div>
+              </div>
+              <div className="mb-4 px-20">
                 <label
-                  className="w-full grow text-lg pr-8 text-left"
-                  htmlFor="title"
+                  className="flex flex-col place-items-center text-4xl"
+                  htmlFor="content"
                 >
-                  name of deceased
+                  memorial
                 </label>
-                <input
-                  className="border-custom-black border-2 font-fredoka-one w-full rounded"
+                <textarea
+                  className="rounded-xl flex grow h-80 border-custom-black border-2 font-fredoka-one w-full"
                   onChange={handleChange}
-                  name="title"
-                  id="title"
-                  type="text"
-                  value={form.title}
+                  name="content"
+                  id="content"
+                  value={form.content}
                 />
               </div>
-              <div className="flex mb-8">
-                <label
-                  className="w-full grow text-lg pr-8 text-left"
-                  htmlFor="date"
-                >
-                  date of passing
-                </label>
+              <div className="flex flex-wrap justify-center gap-4">
+                <DeletePost id={id} auth0_id={post?.auth0_id} />
                 <input
-                  className="border-custom-black border-2 font-fredoka-one w-full rounded"
-                  onChange={handleChange}
-                  name="date"
-                  id="date"
-                  type="date"
-                  value={form.date}
+                  className="rounded-md font-fredoka-one border-custom-black border-2 bg-custom-yellow hover:bg-custom-grey text-custom-black font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+                  type="submit"
                 />
               </div>
-              <div className="flex mb-4">
-                <label
-                  className="w-full grow text-lg pr-8 text-left"
-                  htmlFor="file"
-                >
-                  add a photo
-                </label>
-                <input
-                  className="font-fredoka-one w-full rounded-xl border-custom-black border-2"
-                  onChange={handleChange}
-                  name="file"
-                  id="file"
-                  type="file"
-                />
-              </div>
-            </div>
-            <div className="mb-4 px-20">
-              <label
-                className="flex flex-col place-items-center text-4xl"
-                htmlFor="content"
-              >
-                memorial
-              </label>
-              <textarea
-                className="rounded-xl flex grow h-80 border-custom-black border-2 font-fredoka-one w-full"
-                onChange={handleChange}
-                name="content"
-                id="content"
-                value={form.content}
-              />
-            </div>
-            <div className="flex flex-wrap justify-center gap-4">
-              <DeletePost id={id} auth0_id={post?.auth0_id} />
-              <input
-                className="rounded-md font-fredoka-one border-custom-black border-2 bg-custom-yellow hover:bg-custom-grey text-custom-black font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
-                type="submit"
-              />
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       )}
-    </div>
+    </>
   )
 }

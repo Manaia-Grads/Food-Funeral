@@ -676,10 +676,18 @@ video {
   height: fit-content;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .min-h-fit {
   min-height: -webkit-fit-content;
   min-height: -moz-fit-content;
   min-height: fit-content;
+}
+
+.min-h-0 {
+  min-height: 0px;
 }
 
 .w-full {
@@ -688,6 +696,10 @@ video {
 
 .w-2\/5 {
   width: 40%;
+}
+
+.min-w-0 {
+  min-width: 0px;
 }
 
 .flex-auto {
