@@ -84,12 +84,12 @@ exports.seed = function (knex) {
         },
         {
           id: 8,
-          title: 'I ate a potato',
+          title: 'Mrs Medium Rare Bread',
           date_eaten: '2022-09-19',
-          content: 'this is a very long string that can be changed later',
-          img: 'tomato.png',
+          content: 'Dear friend, medium rare bread with a buttered glaze, so simple yet so elite. Rest easy my sweet friend. With all my heart, I celebrate your life. Thank you, for always being there and for letting me know you`ve got my back on those busy mornings. You taught me to strive each day to get up early so I deserve you and I`ll continue to do my best, knowing that you`ll be there watching me.',
+          img: 'medium_bread.jpeg',
           auth0_id: 'google-oauth2|103547991597142817347',
-          name: 'John Foo',
+          name: 'Heroku',
           date_created: '2022-09-20',
         },
       ])
