@@ -21,30 +21,30 @@ export default function Post() {
   ) : error ? (
     'No post here'
   ) : (
-    <>
-      <div className="flex flex-col items-center justify-center w-full">
-        <h1>{post?.title}</h1>
-        <div>
-          <img
-            className="max-w-lg"
-            src={'/images/uploads/' + post?.img}
-            alt={post?.title}
-          />
+    <div className="px-5">
+      <div className="flex flex-col items-center justify-center w-full bg-custom-yellow border-4 border-custom-black mb-5">
+        <h1 className="text-6xl font-fredoka-one my-2">{post?.title}</h1>
+        <div className="w-2/5">
+          <img src={'/images/uploads/' + post?.img} alt={post?.title} />
+          <p className="text-md font-fredoka-one">
+            Posted by [ {post?.name} ] on {post?.date_eaten}
+          </p>
+
+          <p className="text-xl font-fredoka-one my-6">{post?.content}</p>
         </div>
-        <div>
-          <p>{post?.date_eaten}</p>
-          <p>Posted By: {post?.name}</p>
-        </div>
-        <div>{post?.content}</div>
         <div>
           <UpdatePost postData={post} id={id} />
           <DeletePost id={id} auth0_id={post?.auth0_id} />
         </div>
-        <div className="w-2/5">
-          <AddComment />
-          <Comments />
-        </div>
       </div>
-    </>
+      <div
+        className="flex flex-col items-center justify-center w-full bg-custom-pink border-4 border-custom-black mb-5
+        "
+      >
+        <h1 className="text-3xl font-fredoka-one my-2">Comments</h1>
+        <AddComment />
+        <Comments />
+      </div>
+    </div>
   )
 }

@@ -14,25 +14,34 @@ function Comments() {
   function getDate(SQLDate) {
     const dateNum = new Date(parseInt(SQLDate))
     const date =
-      dateNum.getMonth() +
-      1 +
-      '/' +
       dateNum.getDate() +
       '/' +
+      (dateNum.getMonth() + 1) +
+      '/' +
       dateNum.getFullYear()
-    const time = dateNum.getHours() + ':' + dateNum.getMinutes()
-    const timeDivider = dateNum.getHours() < 12 ? 'am' : 'pm'
-    return `${time}${timeDivider} ${date}`
+    const mins =
+      dateNum.getMinutes() < 10
+        ? '0' + dateNum.getMinutes()
+        : dateNum.getMinutes()
+    const time = dateNum.getHours() + ':' + mins
+    return `${time} ${date}`
   }
 
   return (
-    <div>
+    <div className="w-2/5">
       {comments.map((comment) => {
         return (
-          <div key={comment.id}>
+          <div
+            className="border-2 border-custom-black rounded-md my-4 px-2 bg-custom-grey font-fredoka-one"
+            key={comment.id}
+          >
+            <p>
+              <span className="font-bold font-fredoka-one">
+                - {comment.name}{' '}
+              </span>
+              <span>| {getDate(comment.date)}</span>
+            </p>
             <p>{comment.content}</p>
-            <p>By {comment.name}</p>
-            <p>At {getDate(comment.date)}</p>
           </div>
         )
       })}
