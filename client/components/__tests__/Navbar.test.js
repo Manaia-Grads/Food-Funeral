@@ -86,5 +86,4 @@ describe('<Navbar />', () => {
     const gif = screen.getByRole('img', { alt: /loading/i })
     expect(gif.alt).toBe('loading')
   })
-  test.todo('correctly routes to home page')
 })
