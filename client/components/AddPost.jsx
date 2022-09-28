@@ -53,68 +53,106 @@ function AddPost() {
 
   return (
     <>
-      <div>
-        <h2 className="text-3xl text-center">Write a Post</h2>
-        <p className="text-xl text-center">Posting Guidelines:</p>
-        <p className="text-center ">
-          When blogging about your meal, it&apos;s suggested to give a specific
-          food item a eulogy-like send off. Respect your food by giving it a
-          memorable send off.
-        </p>
+      <div className="px-8">
+        <div className="md:flex border-custom-black border-4 bg-custom-yellow flex-col font-fredoka-one">
+          <h2 className="text-5xl text-center">Write a Post</h2>
+          <p className="text-xl text-center">Posting Guidelines:</p>
+          <p className="text-center font-thin text-sm">
+            Respect your food by giving it a memorable send off.
+          </p>
+          <p className="text-center font-thin text-sm">
+            When blogging about your meal, it&apos;s suggested to give a
+            specific food item a eulogy-like send off.
+          </p>
+        </div>
+
+        <div className="flex items-center border-custom-black border-4 bg-custom-pink flex-col mt-4 mb-4 py-20 font-graduate">
+          <form
+            className=""
+            encType="multipart/form-data"
+            onSubmit={handleSubmit}
+          >
+            <input
+              className=""
+              type="hidden"
+              id="auth0_id"
+              name="auth0_id"
+              value={user?.sub}
+            />
+            <input type="hidden" id="name" name="name" value={user?.name} />
+            <div className="px-60">
+              <div className="flex mb-8">
+                <label
+                  className="w-full grow text-lg pr-8 text-left"
+                  htmlFor="title"
+                >
+                  name of deceased
+                </label>
+                <input
+                  className="border-custom-black border-2 font-fredoka-one w-full rounded"
+                  onChange={handleChange}
+                  name="title"
+                  id="title"
+                  type="text"
+                />
+              </div>
+
+              <div className="flex mb-8">
+                <label
+                  className="w-full grow text-lg pr-8 text-left"
+                  htmlFor="date"
+                >
+                  date of passing
+                </label>
+                <input
+                  className="border-custom-black border-2 font-fredoka-one w-full rounded"
+                  onChange={handleChange}
+                  name="date"
+                  id="date"
+                  type="date"
+                />
+              </div>
+
+              <div className="flex mb-8">
+                <label
+                  className="w-full grow text-lg pr-8 text-left"
+                  htmlFor="file"
+                >
+                  add a photo
+                </label>
+                <input
+                  className="font-fredoka-one w-full rounded-xl border-custom-black border-2"
+                  onChange={handleChange}
+                  name="file"
+                  id="file"
+                  type="file"
+                />
+              </div>
+            </div>
+            <div className="mb-8 px-20">
+              <label
+                className="flex flex-col place-items-center text-4xl"
+                htmlFor="content"
+              >
+                memorial
+              </label>
+              <textarea
+                className="rounded-xl flex grow h-80 border-custom-black border-2 font-fredoka-one w-full"
+                onChange={handleChange}
+                name="content"
+                id="content"
+              />
+            </div>
+
+            <div className="flex flex-col place-items-center">
+              <input
+                className="rounded-xl font-fredoka-one border-custom-black border-2 bg-custom-white hover:bg-custom-grey text-custom-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              />
+            </div>
+          </form>
+        </div>
       </div>
-
-      <form
-        className="content-center"
-        encType="multipart/form-data"
-        onSubmit={handleSubmit}
-      >
-        <input type="hidden" id="auth0_id" name="auth0_id" value={user?.sub} />
-        <input type="hidden" id="name" name="name" value={user?.name} />
-
-        <br />
-
-        <label htmlFor="title">Post Title</label>
-        <input
-          className="border"
-          onChange={handleChange}
-          name="title"
-          id="title"
-          type="text"
-        />
-
-        <br />
-
-        <label htmlFor="date">Time of Death</label>
-        <input
-          className="border"
-          onChange={handleChange}
-          name="date"
-          id="date"
-          type="date"
-        />
-
-        <br />
-
-        <label htmlFor="content">Your blog</label>
-        <textarea
-          className="border"
-          onChange={handleChange}
-          name="content"
-          id="content"
-        />
-
-        <br />
-
-        <label htmlFor="file">Upload Image</label>
-        <input onChange={handleChange} name="file" id="file" type="file" />
-
-        <br />
-
-        <input
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        />
-      </form>
     </>
   )
 }
