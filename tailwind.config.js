@@ -14,7 +14,8 @@ module.exports = {
   fontFamily: {
     'fredoka-one': ['Fredoka One'],
     'graduate': ['graduate'],
-  }
+
   },
   plugins: [],
+  }
 }
