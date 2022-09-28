@@ -10,7 +10,7 @@ function Posts() {
   const { data, loading, error } = useSelector((state) => state.posts)
 
   return (
-    <>
+    <div className="px-5">
       <div className="w-full h-fit border-4 border-black bg-custom-yellow p-2 mb-5">
         <h1 className="font-fredoka-one text-center text-6xl">Food Funeral</h1>
         <h2 className="font-fredoka-one text-center text-2xl">
@@ -49,7 +49,7 @@ function Posts() {
           </div>
         )}
       </div>
-    </>
+    </div>
   )
 }
 
