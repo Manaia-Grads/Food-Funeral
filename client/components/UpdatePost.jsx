@@ -136,11 +136,11 @@ export function UpdatePost({ postData, id }) {
               />
             </div>
             <div className="flex flex-wrap justify-center gap-4">
+              <DeletePost id={id} auth0_id={post?.auth0_id} />
               <input
                 className="rounded-md font-fredoka-one border-custom-black border-2 bg-custom-yellow hover:bg-custom-grey text-custom-black font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                 type="submit"
               />
-              <DeletePost id={id} auth0_id={post?.auth0_id} />
             </div>
           </form>
         </div>

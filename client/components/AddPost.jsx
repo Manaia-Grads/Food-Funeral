@@ -75,22 +75,22 @@ function AddPost() {
               value={user?.sub}
             />
             <input type="hidden" id="name" name="name" value={user?.name} />
-            <div className="flex mb-8">
-              <label
-                className="w-full grow text-lg pr-8 text-left"
-                htmlFor="title"
-              >
-                name of deceased
-              </label>
-              <input
-                className="border-custom-black border-2 font-fredoka-one w-full rounded"
-                onChange={handleChange}
-                name="title"
-                id="title"
-                type="text"
-              />
-            </div>
             <div className="px-60">
+              <div className="flex mb-8">
+                <label
+                  className="w-full grow text-lg pr-8 text-left"
+                  htmlFor="title"
+                >
+                  name of deceased
+                </label>
+                <input
+                  className="border-custom-black border-2 font-fredoka-one w-full rounded"
+                  onChange={handleChange}
+                  name="title"
+                  id="title"
+                  type="text"
+                />
+              </div>
               <div className="flex mb-8">
                 <label
                   className="w-full grow text-lg pr-8 text-left"
