@@ -35,9 +35,8 @@ export default function Post() {
           <p className="text-xl font-fredoka-one my-6">{post?.content}</p>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center w-full bg-custom-blue border-4 border-custom-black mb-5">
-        <UpdatePost postData={post} id={id} />
-      </div>
+      <UpdatePost postData={post} id={id} />
+
       <div
         className="flex flex-col items-center justify-center w-full bg-custom-pink border-4 border-custom-black mb-5
         "
