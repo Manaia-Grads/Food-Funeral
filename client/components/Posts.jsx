@@ -11,6 +11,12 @@ function Posts() {
 
   return (
     <>
+      <header className={'pt-2 pb-5'}>
+        <h1 className={'text-6xl text-center'}>Food Funeral</h1>
+        <h3 className={'text-3xl text-center'}>
+          <i>A food blog with feeling</i>
+        </h3>
+      </header>
       <div>
         {!error && loading ? (
           <div className={'text-l text-center'}>

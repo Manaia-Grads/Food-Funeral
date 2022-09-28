@@ -10,10 +10,6 @@ const App = () => {
     <div>
       <header className={'pt-2 pb-5'}>
         <Navbar />
-        <h1 className={'text-6xl text-center'}>Food Funeral</h1>
-        <h3 className={'text-3xl text-center'}>
-          <i>A food blog with feeling</i>
-        </h3>
       </header>
       <main>
         <Routes>
