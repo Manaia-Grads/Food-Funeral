@@ -74,16 +74,4 @@ describe('<Navbar />', () => {
 
     expect(fakeLogout).toHaveBeenCalled()
   })
-  // loading gif when isLoading: true
-  it('should display the loading gif when loading the auth', async () => {
-    useAuth0.mockImplementation(() => ({
-      logout: fakeLogout,
-      loginWithRedirect: fakeLogin,
-      isAuthenticated: true,
-      isLoading: true,
-    }))
-    render(<Navbar />, { wrapper: Router })
-    const gif = screen.getByRole('img', { alt: /loading/i })
-    expect(gif.alt).toBe('loading')
-  })
 })
