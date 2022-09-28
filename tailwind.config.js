@@ -9,7 +9,10 @@ module.exports = {
       'custom-black':'#000000',
       'custom-white':'#FFFFFF',
       'custom-grey':'#E6E6E6',
-    }
+    },
+      maxHeight: {
+        '128': '41rem',
+      }
   },
 
   fontFamily: {
