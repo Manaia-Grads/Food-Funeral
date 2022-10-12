@@ -45,7 +45,6 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.11.0",
-    "@vscode/sqlite3": "^5.0.7",
     "dotenv": "^16.0.2",
     "express": "^4.17.1",
     "express-jwt": "^7.7.5",
@@ -58,6 +57,7 @@
     "superagent": "^6.1.0"
   },
   "devDependencies": {
+    "@vscode/sqlite3": "^5.0.7",
     "@babel/core": "7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
