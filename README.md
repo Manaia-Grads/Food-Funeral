@@ -1,5 +1,5 @@
 # Food Funeral
-> Food blogging with feeling
+> Food blogging with feeling!
 
 ### Created by:
  - Hamish (Product Owner)
